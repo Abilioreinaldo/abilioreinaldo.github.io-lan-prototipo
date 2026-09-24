@@ -168,7 +168,7 @@ function side(){
  return `<aside class="${S.collapsed?'col':''}">
  <div class="brand"><img class="lg-full" src="logo-branco.png" alt="LAN Desenvolvimento Imobiliário"><img class="lg-mark" src="logo-marca-branco.png" alt="LAN"><div class="lbl"><b>L. A. N. EMPREENDIMENTOS IMOBILIARIOS LTDA</b><small>CNPJ 18.060.502/0001-73</small></div></div>
  <nav aria-label="Menu principal">${NAV.map(([id,l])=>`<button class="nv ${a===id?'on':''}" data-go="${id}" title="${l}" aria-label="${l}">${svg(I[id])}<span class="lbl">${l}</span></button>`).join('')}</nav>
- <div class="user"><div class="av">CM</div><div class="lbl"><b>Carlos Mendes</b><small>Administrador</small></div></div></aside>`;
+ <div class="user"><div class="av">N</div><div class="lbl"><b>Neto</b><small>Administrador</small></div></div></aside>`;
 }
 function head(){
  return `<header><button class="ib" data-act="toggle" aria-label="Recolher ou expandir menu">${svg('M4 6h16M4 12h16M4 18h16',22,2)}</button>
@@ -485,7 +485,7 @@ app.addEventListener('click',e=>{
   const nome=document.getElementById('fNome').value.trim()||'Nova obra sem nome';
   const local=document.getElementById('fLocal').value.trim()||'Local a definir';
   const status=document.getElementById('fStatus').value;
-  S.obras.unshift({id:'n'+Date.now(),nome,local,status,prog:0,cor:'#2e3339',resp:'Carlos Mendes',inicio:'Out/26',prazo:'A definir',orc:'A definir',real:'R$ 0,00',equipe:0,gs:10,ge:12});
+  S.obras.unshift({id:'n'+Date.now(),nome,local,status,prog:0,cor:'#2e3339',resp:'Neto',inicio:'Out/26',prazo:'A definir',orc:'A definir',real:'R$ 0,00',equipe:0,gs:10,ge:12});
   S.filter='Todas';S.q='';S.modal=false;go('obras');flash('Obra “'+nome+'” criada');
  }
 });
