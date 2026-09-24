@@ -3,11 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="theme-color" content="#1d2126">
 <title>L. A. N. Empreendimentos Imobiliários — Gestão de Obras (protótipo)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f3f5f9;--card:#fff;--line:#e4e8f0;--line2:#eef1f6;--ink:#172036;--ink2:#3a465e;--mut:#5f6b82;--pri:#2f5bd8;--side:#16244a;--sideLine:#243462}
+:root{--bg:#f4f5f6;--card:#fff;--line:#e5e7ea;--line2:#eeeff1;--ink:#1d2126;--ink2:#41464d;--mut:#6a7078;--pri:#2e3339;--side:#1d2126;--sideLine:#2e333a}
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
 body{font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg)}
@@ -17,28 +19,30 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
 #app{display:flex;height:100vh;overflow:hidden;position:relative}
 aside{width:224px;flex-shrink:0;background:var(--side);display:flex;flex-direction:column;transition:width .2s}
 aside.col{width:76px}
-.brand{display:flex;align-items:center;gap:10px;padding:16px 12px 14px;border-bottom:1px solid var(--sideLine)}
-.logo{width:40px;height:40px;flex-shrink:0;border-radius:10px;background:#3563e9;display:flex;align-items:center;justify-content:center}
+.brand{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:18px 16px 14px;border-bottom:1px solid var(--sideLine)}
+.lg-full{width:150px;height:auto;display:block}.lg-mark{display:none;width:44px;height:auto}
+aside.col .lg-full{display:none}aside.col .lg-mark{display:block;margin:0 auto}aside.col .brand{align-items:center;padding:20px 8px}
+.logo{width:40px;height:40px;flex-shrink:0;border-radius:10px;background:#454b54;display:flex;align-items:center;justify-content:center}
 .brand .lbl{min-width:0;overflow:hidden}
-.brand b{display:block;font-size:12px;line-height:1.3;color:#fff;letter-spacing:.1px}
-.brand small{display:block;margin-top:3px;font-size:10.5px;color:#a9b5d3;white-space:nowrap}
+.brand b{display:block;font-size:10px;line-height:1.35;color:#c4c8ce;font-weight:600;letter-spacing:.3px}
+.brand small{display:block;margin-top:2px;font-size:10px;color:#9aa1ab;white-space:nowrap}
 nav{flex-grow:1;overflow-y:auto;padding:12px 10px;display:flex;flex-direction:column;gap:2px}
-.nv{display:flex;align-items:center;gap:12px;width:100%;min-height:40px;padding:0 12px;border:0;border-radius:8px;font-size:14px;text-align:left;background:transparent;color:#c3cde4;flex-shrink:0}
-.nv:hover{background:#1f3160}
-.nv.on{background:#3563e9;color:#fff;font-weight:600}
+.nv{display:flex;align-items:center;gap:12px;width:100%;min-height:40px;padding:0 12px;border:0;border-radius:8px;font-size:14px;text-align:left;background:transparent;color:#c4c8ce;flex-shrink:0}
+.nv:hover{background:#2a2f36}
+.nv.on{background:#454b54;color:#fff;font-weight:600}
 aside.col .nv{justify-content:center}
 aside.col .lbl{display:none}
 .user{border-top:1px solid var(--sideLine);padding:14px 16px;display:flex;align-items:center;gap:10px}
-.av{width:36px;height:36px;flex-shrink:0;border-radius:50%;background:#6f7cf5;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.user b{display:block;font-size:14px;color:#fff}.user small{font-size:12px;color:#a9b5d3}
+.av{width:36px;height:36px;flex-shrink:0;border-radius:50%;background:#5b636d;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.user b{display:block;font-size:14px;color:#fff}.user small{font-size:12px;color:#9aa1ab}
 .col-main{flex-grow:1;min-width:0;display:flex;flex-direction:column}
 header{height:60px;flex-shrink:0;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:0 20px}
 .ib{width:44px;height:44px;border:0;background:transparent;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink2)}
-.ib:hover{background:#f1f3f8}
+.ib:hover{background:#f1f2f4}
 .search{flex-grow:1;display:flex;justify-content:center}
-.search label{width:min(460px,100%);height:40px;display:flex;align-items:center;gap:10px;padding:0 12px;background:#f1f3f8;border:1px solid #e0e5ee;border-radius:10px}
+.search label{width:min(460px,100%);height:40px;display:flex;align-items:center;gap:10px;padding:0 12px;background:#f1f2f4;border:1px solid #e2e5e8;border-radius:10px}
 .search input{flex-grow:1;border:0;background:transparent;outline:none;font-size:14px;min-width:0}
-.kbd{font-size:11px;color:var(--mut);background:#fff;border:1px solid #d9dfea;border-radius:5px;padding:2px 6px}
+.kbd{font-size:11px;color:var(--mut);background:#fff;border:1px solid #dcdfe3;border-radius:5px;padding:2px 6px}
 .plus{width:44px;height:44px;border:0;border-radius:10px;background:var(--pri);color:#fff;display:flex;align-items:center;justify-content:center}
 main{flex-grow:1;overflow-y:auto;padding:24px 28px 32px}
 h1{margin:0;font-size:24px;font-weight:700}
@@ -54,7 +58,7 @@ h2{margin:0;font-size:16px;font-weight:600}
 .hd{display:flex;align-items:center;justify-content:space-between}
 .lnk{border:0;background:none;color:var(--pri);font-size:13px;font-weight:600;padding:8px 0}
 .kpi{display:flex;gap:14px;align-items:flex-start;padding:20px;text-align:left;width:100%}
-.kpi:hover,.row:hover{background:#fafbfd}
+.kpi:hover,.row:hover{background:#fafafb}
 .kt{width:48px;height:48px;flex-shrink:0;border-radius:12px;display:flex;align-items:center;justify-content:center}
 .kl{font-size:13px;color:var(--mut)}.kv{font-size:26px;font-weight:700;display:block}.kd{font-size:12px}
 .row{display:flex;align-items:center;gap:12px;padding:10px 0;border:0;border-top:1px solid var(--line2);background:none;text-align:left;width:100%}
@@ -63,23 +67,24 @@ h2{margin:0;font-size:16px;font-weight:600}
 .lc{font-size:12px;color:var(--mut)}
 .bd{display:inline-block;white-space:nowrap;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px}
 .grow{flex-grow:1;min-width:0}
-.bar{height:8px;background:#eaeef5;border-radius:5px;overflow:hidden;flex-grow:1}
+.bar{height:8px;background:#e9ebee;border-radius:5px;overflow:hidden;flex-grow:1}
 .bar>span{display:block;height:100%;border-radius:5px}
-.tbl-h{display:grid;gap:12px;padding:12px 20px;background:#f7f9fc;border-bottom:1px solid var(--line);font-size:12px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.4px}
+.tbl-h{display:grid;gap:12px;padding:12px 20px;background:#f7f8f9;border-bottom:1px solid var(--line);font-size:12px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.4px}
 .tbl-r{display:grid;gap:12px;align-items:center;width:100%;padding:14px 20px;border:0;border-bottom:1px solid var(--line2);background:#fff;text-align:left;font-size:14px}
+.tbl-h>*,.tbl-r>*{min-width:0}
 .cols-obras{grid-template-columns:2.4fr 1.3fr 1.2fr .9fr 1fr 1.4fr}
-.cols-ped{grid-template-columns:.8fr 2fr 1.5fr 1.5fr 1fr 1.4fr}
-.chip{height:36px;padding:0 14px;border-radius:18px;font-size:13px;font-weight:600;background:#fff;color:var(--ink2);border:1px solid #d9dfea}
+.cols-ped{grid-template-columns:.8fr 1.7fr 1.4fr 1.3fr .9fr 2.1fr}
+.chip{height:36px;padding:0 14px;border-radius:18px;font-size:13px;font-weight:600;background:#fff;color:var(--ink2);border:1px solid #dcdfe3}
 .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .btn{height:44px;padding:0 18px;border:0;border-radius:10px;background:var(--pri);color:#fff;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px}
-.btn.ghost{background:#fff;border:1px solid #d9dfea;color:var(--ink2)}
+.btn.ghost{background:#fff;border:1px solid #dcdfe3;color:var(--ink2)}
 .btn.sm{height:32px;padding:0 12px;font-size:12px;border-radius:8px}
 .btn.out{height:36px;width:84px;justify-content:center;background:#fff;border:1px solid var(--pri);color:var(--pri);font-size:13px;border-radius:8px}
 .tabs{display:flex;gap:4px;padding:0 16px;border-bottom:1px solid var(--line)}
 .tab{height:48px;padding:0 14px;border:0;background:none;font-size:14px;font-weight:600;margin-bottom:-1px;color:var(--mut);border-bottom:2px solid transparent}
 .tab.on{color:var(--pri);border-bottom-color:var(--pri)}
 .gantt-row{display:grid;grid-template-columns:240px 1fr;gap:16px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line2)}
-.track{position:relative;height:30px;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(100%/12 - 1px),#eef1f6 calc(100%/12 - 1px),#eef1f6 calc(100%/12))}
+.track{position:relative;height:30px;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(100%/12 - 1px),#eeeff1 calc(100%/12 - 1px),#eeeff1 calc(100%/12))}
 .gb{position:absolute;top:3px;height:24px;border-radius:6px;overflow:hidden;display:flex;align-items:center}
 .gb i{position:absolute;left:0;top:0;bottom:0}
 .gb em{position:relative;font-style:normal;font-size:11px;font-weight:700;color:#fff;padding:0 8px}
@@ -88,17 +93,18 @@ h2{margin:0;font-size:16px;font-weight:600}
 .overlay{position:fixed;inset:0;background:rgba(15,23,42,.45);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}
 .dlg{width:480px;max-width:100%;background:#fff;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:0 20px 50px rgba(15,23,42,.25)}
 .fld{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--ink2)}
-.fld input,.fld select{height:42px;border:1px solid #d9dfea;border-radius:8px;padding:0 12px;font-size:14px;font-weight:400;background:#fff}
+.fld input,.fld select{height:42px;border:1px solid #dcdfe3;border-radius:8px;padding:0 12px;font-size:14px;font-weight:400;background:#fff}
 .toast{position:fixed;right:24px;bottom:24px;background:var(--ink);color:#fff;border-radius:10px;padding:12px 16px;font-size:14px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(15,23,42,.3);z-index:20}
 .muted{color:var(--mut)}
 .g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.sw{width:42px;height:24px;border-radius:12px;border:0;background:#c9d1e0;position:relative;flex-shrink:0;padding:0}
+.sw{width:42px;height:24px;border-radius:12px;border:0;background:#cdd1d6;position:relative;flex-shrink:0;padding:0}
 .sw::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
 .sw.on{background:#2e9b5a}.sw.on::after{left:21px}
 .eq{display:flex;flex-direction:column;gap:12px;padding:18px}
 .star{color:#e0a21b;letter-spacing:1px}
 @media (max-width:1100px){.g3{grid-template-columns:repeat(2,minmax(0,1fr))}.gdash{grid-template-columns:1fr 1fr}.gdash>:last-child{grid-column:1/-1}.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:820px){
+  aside.col .lg-full{display:block}aside.col .lg-mark{display:none}aside.col .brand{align-items:flex-start;padding:18px 16px 14px}
   aside{position:absolute;z-index:5;height:100%;transform:translateX(0);transition:transform .2s}
   aside.col{transform:translateX(-100%);width:224px}
   aside.col .lbl{display:inline}
@@ -129,16 +135,16 @@ const I={
  marketplace:'M4 9l1-5h14l1 5M4 9h16v11H4zM9 20v-6h6v6',relatorios:'M5 20V10M10 20V4M15 20v-8M20 20v-5',ia:'M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z'};
 const NAV=[['dashboard','Dashboard'],['obras','Obras'],['planejamento','Planejamento'],['projetos','Projetos'],['orcamento','Orçamento'],['financeiro','Financeiro'],['compras','Compras'],['estoque','Estoque'],['equipamentos','Equipamentos'],['rh','RH'],['seguranca','Segurança do Trabalho'],['documentos','Documentos'],['contratos','Contratos'],['clientes','Clientes'],['fornecedores','Fornecedores'],['marketplace','Marketplace'],['relatorios','Relatórios'],['ia','IA & Automações']];
 const BUILD='M4 21V9l8-5 8 5v12M9 21v-5h6v5';
-const BADGE={'Em execução':['#e3f5e9','#1a6b3c'],'Planejamento':['#e6ecfd','#2447b3'],'Aguardando material':['#fdf1d8','#8a5800'],'Paralisada':['#fde4e2','#a3221b'],'Aguardando aprovação':['#fdf1d8','#8a5800'],'Aprovado':['#e6ecfd','#2447b3'],'Em trânsito':['#efe9fd','#5a3bb3'],'Entregue':['#e3f5e9','#1a6b3c'],
- 'Em revisão':['#fdf1d8','#8a5800'],'Em elaboração':['#e6ecfd','#2447b3'],'Vigente':['#e3f5e9','#1a6b3c'],'Vencendo':['#fdf1d8','#8a5800'],'Vencido':['#fde4e2','#a3221b'],'Renovação solicitada':['#e6ecfd','#2447b3'],
- 'Em operação':['#e3f5e9','#1a6b3c'],'Manutenção':['#fde4e2','#a3221b'],'Disponível':['#e6ecfd','#2447b3'],'Ativo':['#e3f5e9','#1a6b3c'],'Afastado':['#fde4e2','#a3221b'],'Férias':['#efe9fd','#5a3bb3'],
+const BADGE={'Em execução':['#e3f5e9','#1a6b3c'],'Planejamento':['#e2e8ee','#34506a'],'Aguardando material':['#fdf1d8','#8a5800'],'Paralisada':['#fde4e2','#a3221b'],'Aguardando aprovação':['#fdf1d8','#8a5800'],'Aprovado':['#e2e8ee','#34506a'],'Em trânsito':['#efe9fd','#5a3bb3'],'Entregue':['#e3f5e9','#1a6b3c'],
+ 'Em revisão':['#fdf1d8','#8a5800'],'Em elaboração':['#e2e8ee','#34506a'],'Vigente':['#e3f5e9','#1a6b3c'],'Vencendo':['#fdf1d8','#8a5800'],'Vencido':['#fde4e2','#a3221b'],'Renovação solicitada':['#e2e8ee','#34506a'],
+ 'Em operação':['#e3f5e9','#1a6b3c'],'Manutenção':['#fde4e2','#a3221b'],'Disponível':['#e2e8ee','#34506a'],'Ativo':['#e3f5e9','#1a6b3c'],'Afastado':['#fde4e2','#a3221b'],'Férias':['#efe9fd','#5a3bb3'],
  'Homologado':['#e3f5e9','#1a6b3c'],'Em avaliação':['#fdf1d8','#8a5800'],'Conforme':['#e3f5e9','#1a6b3c'],'Não conforme':['#fde4e2','#a3221b'],'Pendente':['#fdf1d8','#8a5800'],'Resolvida':['#e3f5e9','#1a6b3c'],'Agendado':['#e3f5e9','#1a6b3c'],
- 'Em medição':['#e6ecfd','#2447b3'],'Encerrado':['#eceff4','#3a465e'],'Suspenso':['#fde4e2','#a3221b'],'Abaixo do mínimo':['#fde4e2','#a3221b'],'Normal':['#e3f5e9','#1a6b3c'],'Atenção':['#fdf1d8','#8a5800'],'Compra solicitada':['#e6ecfd','#2447b3']};
-const bd=s=>{const c=BADGE[s]||['#eceff4','#3a465e'];return `<span class="bd" style="background:${c[0]};color:${c[1]}">${esc(s)}</span>`};
+ 'Em medição':['#e2e8ee','#34506a'],'Encerrado':['#eceef0','#41464d'],'Suspenso':['#fde4e2','#a3221b'],'Abaixo do mínimo':['#fde4e2','#a3221b'],'Normal':['#e3f5e9','#1a6b3c'],'Atenção':['#fdf1d8','#8a5800'],'Compra solicitada':['#e2e8ee','#34506a']};
+const bd=s=>{const c=BADGE[s]||['#eceef0','#41464d'];return `<span class="bd" style="background:${c[0]};color:${c[1]}">${esc(s)}</span>`};
 
 const S={screen:'dashboard',obraId:'vista',tab:'resumo',collapsed:window.innerWidth<820,modal:false,filter:'Todas',q:'',toast:'',doneTasks:{},pagas:{},aprovados:{},done:{},sub:{},auto:{a1:true,a2:true,a3:false,a4:true,a5:false},cart:{},
  obras:[
- {id:'vista',nome:'Residencial Vista do Sol',local:'Praia Brava, Itajaí - SC',status:'Em execução',prog:72,cor:'#3f6fe0',resp:'Juliana Silva',inicio:'Fev/26',prazo:'Dez/26',orc:'R$ 2,40M',real:'R$ 1,62M',equipe:48,gs:2,ge:12},
+ {id:'vista',nome:'Residencial Vista do Sol',local:'Praia Brava, Itajaí - SC',status:'Em execução',prog:72,cor:'#4f5d6e',resp:'Juliana Silva',inicio:'Fev/26',prazo:'Dez/26',orc:'R$ 2,40M',real:'R$ 1,62M',equipe:48,gs:2,ge:12},
  {id:'plaza',nome:'Edifício Plaza Corporate',local:'Centro, São Paulo - SP',status:'Em execução',prog:45,cor:'#6a5ae0',resp:'Ricardo Alves',inicio:'Mar/26',prazo:'Mar/27',orc:'R$ 3,10M',real:'R$ 1,31M',equipe:62,gs:3,ge:12},
  {id:'shopping',nome:'Shopping Park Sul',local:'Porto Alegre - RS',status:'Planejamento',prog:15,cor:'#2f9e6a',resp:'Fernanda Costa',inicio:'Ago/26',prazo:'Jun/28',orc:'R$ 1,20M',real:'R$ 0,14M',equipe:12,gs:8,ge:12},
  {id:'galpao',nome:'Galpão Logístico XPTO',local:'Cajamar - SP',status:'Aguardando material',prog:30,cor:'#d9892a',resp:'Marcos Pereira',inicio:'Mai/26',prazo:'Nov/26',orc:'R$ 0,95M',real:'R$ 0,31M',equipe:21,gs:5,ge:11},
@@ -147,7 +153,7 @@ const S={screen:'dashboard',obraId:'vista',tab:'resumo',collapsed:window.innerWi
  {id:'recanto',nome:'Condomínio Recanto Verde',local:'Joinville - SC',status:'Paralisada',prog:38,cor:'#7a8499',resp:'Juliana Silva',inicio:'Abr/26',prazo:'Jan/27',orc:'R$ 1,85M',real:'R$ 0,71M',equipe:0,gs:4,ge:12}]};
 
 const TASKS=[['t1','Finalizar concretagem da laje','Alta','25/09'],['t2','Aprovar medição de setembro','Alta','26/09'],['t3','Revisar projeto elétrico','Média','29/09'],['t4','Enviar relatório ao cliente','Baixa','30/09']];
-const PRIO={'Alta':['#fde4e2','#a3221b'],'Média':['#fdf1d8','#8a5800'],'Baixa':['#eceff4','#3a465e']};
+const PRIO={'Alta':['#fde4e2','#a3221b'],'Média':['#fdf1d8','#8a5800'],'Baixa':['#eceef0','#41464d']};
 const PED=[['PC-1048','Cimento CP-II','500 sacos','Cimentos Sul Ltda','Vista do Sol','R$ 21.500','Aguardando aprovação'],['PC-1047','Aço CA-50 10mm','8 t','Metalúrgica Paraná','Plaza Corporate','R$ 58.400','Aguardando aprovação'],['PC-1046','Bloco cerâmico 14x19','12.000 un','Cerâmica Horizonte','Escola Horizonte','R$ 16.800','Aguardando aprovação'],['PC-1045','Telha termoacústica','1.200 m²','CobreBem Telhas','Galpão XPTO','R$ 94.200','Em trânsito'],['PC-1044','Cabo flexível 6mm','3.000 m','EletroForte','Clínica Santa Luzia','R$ 12.900','Aprovado'],['PC-1043','Areia média lavada','80 m³','Areal Rio Claro','Vista do Sol','R$ 9.600','Entregue']];
 const CONTAS=[['c1','Concreto usinado — 42 m³','Vista do Sol','25/09','R$ 18.900'],['c2','Locação de grua','Plaza Corporate','26/09','R$ 32.000'],['c3','Empreiteira de alvenaria','Escola Horizonte','27/09','R$ 45.300'],['c4','Andaimes — medição set.','Clínica Santa Luzia','30/09','R$ 7.450'],['c5','Projeto de climatização','Shopping Park Sul','02/10','R$ 22.000']];
 
@@ -160,13 +166,13 @@ let tt;const flash=m=>{set({toast:m});clearTimeout(tt);tt=setTimeout(()=>set({to
 function side(){
  const a=S.screen==='obra'?'obras':S.screen;
  return `<aside class="${S.collapsed?'col':''}">
- <div class="brand"><div class="logo" style="width:34px;height:34px">${svg(I.obras,19,2,'#fff')}</div><div class="lbl"><b>L. A. N. EMPREENDIMENTOS IMOBILIARIOS LTDA</b><small>CNPJ 18.060.502/0001-73</small></div></div>
+ <div class="brand"><img class="lg-full" src="logo-branco.png" alt="LAN Desenvolvimento Imobiliário"><img class="lg-mark" src="logo-marca-branco.png" alt="LAN"><div class="lbl"><b>L. A. N. EMPREENDIMENTOS IMOBILIARIOS LTDA</b><small>CNPJ 18.060.502/0001-73</small></div></div>
  <nav aria-label="Menu principal">${NAV.map(([id,l])=>`<button class="nv ${a===id?'on':''}" data-go="${id}" title="${l}" aria-label="${l}">${svg(I[id])}<span class="lbl">${l}</span></button>`).join('')}</nav>
  <div class="user"><div class="av">CM</div><div class="lbl"><b>Carlos Mendes</b><small>Administrador</small></div></div></aside>`;
 }
 function head(){
  return `<header><button class="ib" data-act="toggle" aria-label="Recolher ou expandir menu">${svg('M4 6h16M4 12h16M4 18h16',22,2)}</button>
- <div class="search"><label>${svg('M11 18a7 7 0 1 0 0-14a7 7 0 1 0 0 14M21 21l-5-5',16,2,'#5f6b82')}<input id="q" type="search" value="${esc(S.q)}" placeholder="Buscar obras, projetos, documentos..." aria-label="Buscar"><span class="kbd">Ctrl + K</span></label></div>
+ <div class="search"><label>${svg('M11 18a7 7 0 1 0 0-14a7 7 0 1 0 0 14M21 21l-5-5',16,2,'#6a7078')}<input id="q" type="search" value="${esc(S.q)}" placeholder="Buscar obras, projetos, documentos..." aria-label="Buscar"><span class="kbd">Ctrl + K</span></label></div>
  <button class="plus" data-act="modal" aria-label="Nova obra">${svg('M12 5v14M5 12h14',20,2.2)}</button></header>`;
 }
 const tile=(o,s=38,r=9,i=18)=>`<span class="tile" style="background:${o.cor};width:${s}px;height:${s}px;border-radius:${r}px">${svg(BUILD,i,2,'#fff')}</span>`;
@@ -174,43 +180,43 @@ const tile=(o,s=38,r=9,i=18)=>`<span class="tile" style="background:${o.cor};wid
 function dash(){
  const done=Object.values(S.doneTasks).filter(Boolean).length;
  const kt=(bg,fg,d)=>`<span class="kt" style="background:${bg};color:${fg}">${svg(d,22)}</span>`;
- const k=[['obras',kt('#e6ecfd','#2447b3',I.obras),'Obras em andamento',S.obras.filter(o=>o.status!=='Paralisada').length,'↑ 2 desde o mês passado','#1a6b3c'],
+ const k=[['obras',kt('#e2e8ee','#34506a',I.obras),'Obras em andamento',S.obras.filter(o=>o.status!=='Paralisada').length,'↑ 2 desde o mês passado','#1a6b3c'],
   ['planejamento',kt('#e3f5e9','#1a6b3c','M4 4h16v16H4zM8 12l3 3 5-6'),'Tarefas pendentes',48-done,'↑ 8% desde a semana passada','#1a6b3c'],
-  ['financeiro',kt('#fdf1d8','#8a5800','M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 7v5l3 3'),'Custo total das obras','R$ 8,42M','↓ 4% abaixo do orçamento','#2447b3'],
+  ['financeiro',kt('#fdf1d8','#8a5800','M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 7v5l3 3'),'Custo total das obras','R$ 8,42M','↓ 4% abaixo do orçamento','#2e3339'],
   ['financeiro',kt('#fde4e2','#a3221b','M3 6h18v12H3zM3 10h18M7 15h4'),'Receitas no mês','R$ 1,25M','↑ 12% desde o mês passado','#1a6b3c']];
- const ag=[['08:00','Reunião de alinhamento','Residencial Vista do Sol','#2f5bd8'],['10:30','Visita técnica','Edifício Plaza Corporate','#2e9b5a'],['14:00','Reunião com fornecedor','Metalúrgica Paraná','#6a5ae0'],['16:00','Análise de orçamento','Shopping Park Sul','#d9892a']];
+ const ag=[['08:00','Reunião de alinhamento','Residencial Vista do Sol','#2e3339'],['10:30','Visita técnica','Edifício Plaza Corporate','#2e9b5a'],['14:00','Reunião com fornecedor','Metalúrgica Paraná','#6a5ae0'],['16:00','Análise de orçamento','Shopping Park Sul','#d9892a']];
  const at=[['JS','Juliana Silva','adicionou 12 fotos no diário de obra','Há 25 min · Vista do Sol'],['RA','Ricardo Alves','atualizou o cronograma','Há 1 h · Plaza Corporate'],['MP','Marcos Pereira','registrou recebimento de material','Há 2 h · Galpão XPTO'],['AR','Ana Ribeiro','concluiu a vistoria de segurança','Ontem · Escola Horizonte']];
- const al=[['Documentos vencendo','ARTs e licenças nos próximos 15 dias',docVenc(),['#fde4e2','#a3221b','#c93a31'],'documentos'],['Pedidos aguardando aprovação','Compras acima de R$ 20 mil',pendentes(),['#fdf1d8','#8a5800','#c77a0a'],'compras'],['Contas vencendo esta semana','Fornecedores e terceiros',abertas(),['#e6ecfd','#2447b3','#2f5bd8'],'financeiro'],['Obra paralisada','Condomínio Recanto Verde',1,['#eceff4','#3a465e','#5f6b82'],'obras']];
+ const al=[['Documentos vencendo','ARTs e licenças nos próximos 15 dias',docVenc(),['#fde4e2','#a3221b','#c93a31'],'documentos'],['Pedidos aguardando aprovação','Compras acima de R$ 20 mil',pendentes(),['#fdf1d8','#8a5800','#c77a0a'],'compras'],['Contas vencendo esta semana','Fornecedores e terceiros',abertas(),['#e2e8ee','#34506a','#2e3339'],'financeiro'],['Obra paralisada','Condomínio Recanto Verde',1,['#eceef0','#41464d','#6a7078'],'obras']];
  const tl=TASKS.filter(t=>!S.doneTasks[t[0]]).length;
  return `<div class="stack"><div><h1 style="font-size:26px">Bom dia, Carlos!</h1><p class="sub">Aqui está o resumo do que está acontecendo hoje.</p></div>
  <div class="g4">${k.map(x=>`<button class="card kpi" data-go="${x[0]}">${x[1]}<span><span class="kl">${x[2]}</span><span class="kv">${x[3]}</span><span class="kd" style="color:${x[5]}">${x[4]}</span></span></button>`).join('')}</div>
  <div class="gdash">
   <section class="card" style="padding:18px 18px 8px"><div class="hd"><h2>Obras em andamento</h2><button class="lnk" data-go="obras">Ver todas</button></div>
   ${S.obras.slice(0,5).map(o=>`<button class="row" data-obra="${o.id}">${tile(o)}<span class="grow"><span class="nm">${esc(o.nome)}</span><span class="lc">${esc(o.local)}</span></span><span style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">${bd(o.status)}<b style="font-size:13px">${o.prog}%</b></span></button>`).join('')}</section>
-  <section class="card pad stack" style="gap:10px"><div class="hd"><h2>Evolução financeira das obras</h2><select aria-label="Período" style="height:34px;border:1px solid #d9dfea;border-radius:8px;padding:0 8px;font-size:13px;background:#fff"><option>Este mês</option><option>Últimos 3 meses</option><option>Este ano</option></select></div>
-  <div style="display:flex;gap:16px;font-size:12px;color:#3a465e"><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:3px;background:#2f5bd8"></span>Orçado</span><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:3px;background:#2e9b5a"></span>Realizado</span><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;border-top:2px dashed #8c96a8"></span>Previsto</span></div>
+  <section class="card pad stack" style="gap:10px"><div class="hd"><h2>Evolução financeira das obras</h2><select aria-label="Período" style="height:34px;border:1px solid #dcdfe3;border-radius:8px;padding:0 8px;font-size:13px;background:#fff"><option>Este mês</option><option>Últimos 3 meses</option><option>Este ano</option></select></div>
+  <div style="display:flex;gap:16px;font-size:12px;color:#41464d"><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:3px;background:#2e3339"></span>Orçado</span><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:3px;background:#2e9b5a"></span>Realizado</span><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;border-top:2px dashed #8f959d"></span>Previsto</span></div>
   <svg viewBox="0 0 400 170" width="100%" height="190" role="img" aria-label="Evolução financeira em maio: orçado, realizado e previsto">
-  <g stroke="#eef1f6"><line x1="34" y1="10" x2="392" y2="10"/><line x1="34" y1="42.5" x2="392" y2="42.5"/><line x1="34" y1="75" x2="392" y2="75"/><line x1="34" y1="107.5" x2="392" y2="107.5"/><line x1="34" y1="140" x2="392" y2="140"/></g>
-  <g font-size="10" fill="#5f6b82" text-anchor="end"><text x="26" y="13">10M</text><text x="26" y="46">8M</text><text x="26" y="78">6M</text><text x="26" y="111">4M</text><text x="26" y="143">2M</text></g>
-  <g font-size="10" fill="#5f6b82" text-anchor="middle"><text x="50" y="160">1 Mai</text><text x="132" y="160">8 Mai</text><text x="214" y="160">15 Mai</text><text x="296" y="160">22 Mai</text><text x="378" y="160">29 Mai</text></g>
+  <g stroke="#eeeff1"><line x1="34" y1="10" x2="392" y2="10"/><line x1="34" y1="42.5" x2="392" y2="42.5"/><line x1="34" y1="75" x2="392" y2="75"/><line x1="34" y1="107.5" x2="392" y2="107.5"/><line x1="34" y1="140" x2="392" y2="140"/></g>
+  <g font-size="10" fill="#6a7078" text-anchor="end"><text x="26" y="13">10M</text><text x="26" y="46">8M</text><text x="26" y="78">6M</text><text x="26" y="111">4M</text><text x="26" y="143">2M</text></g>
+  <g font-size="10" fill="#6a7078" text-anchor="middle"><text x="50" y="160">1 Mai</text><text x="132" y="160">8 Mai</text><text x="214" y="160">15 Mai</text><text x="296" y="160">22 Mai</text><text x="378" y="160">29 Mai</text></g>
   <polygon points="50,125.4 132,105.9 214,84.8 296,65.3 378,53.9 378,140 50,140" fill="#2e9b5a" fill-opacity=".08"/>
-  <polyline points="50,101 132,81.5 214,60.4 296,39.3 378,18.1" fill="none" stroke="#8c96a8" stroke-width="1.8" stroke-dasharray="5 4"/>
-  <polyline points="50,115.6 132,86.4 214,62 296,36 378,14.9" fill="none" stroke="#2f5bd8" stroke-width="2.4"/>
+  <polyline points="50,101 132,81.5 214,60.4 296,39.3 378,18.1" fill="none" stroke="#8f959d" stroke-width="1.8" stroke-dasharray="5 4"/>
+  <polyline points="50,115.6 132,86.4 214,62 296,36 378,14.9" fill="none" stroke="#2e3339" stroke-width="2.4"/>
   <polyline points="50,125.4 132,105.9 214,84.8 296,65.3 378,53.9" fill="none" stroke="#2e9b5a" stroke-width="2.4"/>
-  <g fill="#2f5bd8"><circle cx="50" cy="115.6" r="3.5"/><circle cx="132" cy="86.4" r="3.5"/><circle cx="214" cy="62" r="3.5"/><circle cx="296" cy="36" r="3.5"/><circle cx="378" cy="14.9" r="3.5"/></g>
+  <g fill="#2e3339"><circle cx="50" cy="115.6" r="3.5"/><circle cx="132" cy="86.4" r="3.5"/><circle cx="214" cy="62" r="3.5"/><circle cx="296" cy="36" r="3.5"/><circle cx="378" cy="14.9" r="3.5"/></g>
   <g fill="#2e9b5a"><circle cx="50" cy="125.4" r="3.5"/><circle cx="132" cy="105.9" r="3.5"/><circle cx="214" cy="84.8" r="3.5"/><circle cx="296" cy="65.3" r="3.5"/><circle cx="378" cy="53.9" r="3.5"/></g></svg>
-  <div class="g3" style="gap:8px;border-top:1px solid #eef1f6;padding-top:12px;text-align:center"><div><div class="lc">Orçado</div><b style="font-size:18px">R$ 9,80M</b></div><div><div class="lc">Realizado</div><b style="font-size:18px;color:#1e7a44">R$ 6,42M</b></div><div><div class="lc">Previsto</div><b style="font-size:18px">R$ 8,95M</b></div></div></section>
+  <div class="g3" style="gap:8px;border-top:1px solid #eeeff1;padding-top:12px;text-align:center"><div><div class="lc">Orçado</div><b style="font-size:18px">R$ 9,80M</b></div><div><div class="lc">Realizado</div><b style="font-size:18px;color:#1e7a44">R$ 6,42M</b></div><div><div class="lc">Previsto</div><b style="font-size:18px">R$ 8,95M</b></div></div></section>
   <section class="card pad stack" style="gap:12px"><h2>Agenda do dia</h2>
-  ${ag.map(a=>`<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:40px;flex-shrink:0;font-size:12px;font-weight:600;color:#5f6b82;padding-top:10px">${a[0]}</span><span style="width:10px;height:10px;flex-shrink:0;margin-top:14px;border-radius:50%;background:${a[3]}"></span><div style="flex-grow:1;background:#f4f6fa;border-radius:8px;padding:9px 12px"><b style="font-size:13px;display:block">${a[1]}</b><span class="lc">${a[2]}</span></div></div>`).join('')}
+  ${ag.map(a=>`<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:40px;flex-shrink:0;font-size:12px;font-weight:600;color:#6a7078;padding-top:10px">${a[0]}</span><span style="width:10px;height:10px;flex-shrink:0;margin-top:14px;border-radius:50%;background:${a[3]}"></span><div style="flex-grow:1;background:#f4f5f7;border-radius:8px;padding:9px 12px"><b style="font-size:13px;display:block">${a[1]}</b><span class="lc">${a[2]}</span></div></div>`).join('')}
   <button class="lnk" style="align-self:flex-end" data-go="planejamento">Ver todas as agendas</button></section>
  </div>
  <div class="g3">
   <section class="card pad"><div class="hd"><h2>Tarefas pendentes</h2><span class="lc">${tl} em aberto</span></div>
-  ${TASKS.map(t=>{const d=!!S.doneTasks[t[0]],p=PRIO[t[2]];return `<label style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid #eef1f6;cursor:pointer"><input type="checkbox" data-task="${t[0]}" ${d?'checked':''} style="width:18px;height:18px;accent-color:#2f5bd8"><span style="flex-grow:1;font-size:13px;${d?'color:#8c96a8;text-decoration:line-through':'font-weight:500'}">${t[1]}</span><span class="bd" style="background:${p[0]};color:${p[1]}">${t[2]}</span><span class="lc" style="width:40px;text-align:right">${t[3]}</span></label>`}).join('')}</section>
+  ${TASKS.map(t=>{const d=!!S.doneTasks[t[0]],p=PRIO[t[2]];return `<label style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid #eeeff1;cursor:pointer"><input type="checkbox" data-task="${t[0]}" ${d?'checked':''} style="width:18px;height:18px;accent-color:#2e3339"><span style="flex-grow:1;font-size:13px;${d?'color:#8f959d;text-decoration:line-through':'font-weight:500'}">${t[1]}</span><span class="bd" style="background:${p[0]};color:${p[1]}">${t[2]}</span><span class="lc" style="width:40px;text-align:right">${t[3]}</span></label>`}).join('')}</section>
   <section class="card pad"><h2>Atividades recentes</h2>
-  ${at.map(a=>`<div style="display:flex;gap:10px;padding:8px 0;border-top:1px solid #eef1f6;margin-top:6px"><div class="av" style="width:30px;height:30px;font-size:11px;background:#e6ecfd;color:#2f55c9">${a[0]}</div><div><div style="font-size:13px"><b>${a[1]}</b> ${a[2]}</div><span class="lc">${a[3]}</span></div></div>`).join('')}</section>
+  ${at.map(a=>`<div style="display:flex;gap:10px;padding:8px 0;border-top:1px solid #eeeff1;margin-top:6px"><div class="av" style="width:30px;height:30px;font-size:11px;background:#eceef1;color:#3d434b">${a[0]}</div><div><div style="font-size:13px"><b>${a[1]}</b> ${a[2]}</div><span class="lc">${a[3]}</span></div></div>`).join('')}</section>
   <section class="card pad"><h2>Alertas e pendências</h2>
-  ${al.map(a=>`<button class="row" data-go="${a[4]}" style="margin-top:6px"><span style="width:32px;height:32px;flex-shrink:0;border-radius:8px;display:flex;align-items:center;justify-content:center;background:${a[3][0]};color:${a[3][1]}">${svg('M12 3l10 18H2zM12 10v4M12 17.5v.01',16,2)}</span><span class="grow"><b style="font-size:13px;display:block">${a[0]}</b><span class="lc">${a[1]}</span></span><span style="min-width:22px;height:22px;border-radius:11px;font-size:12px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;padding:0 6px;background:${a[2]?a[3][2]:'#b7bfcd'}">${a[2]}</span></button>`).join('')}</section>
+  ${al.map(a=>`<button class="row" data-go="${a[4]}" style="margin-top:6px"><span style="width:32px;height:32px;flex-shrink:0;border-radius:8px;display:flex;align-items:center;justify-content:center;background:${a[3][0]};color:${a[3][1]}">${svg('M12 3l10 18H2zM12 10v4M12 17.5v.01',16,2)}</span><span class="grow"><b style="font-size:13px;display:block">${a[0]}</b><span class="lc">${a[1]}</span></span><span style="min-width:22px;height:22px;border-radius:11px;font-size:12px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;padding:0 6px;background:${a[2]?a[3][2]:'#b9bdc3'}">${a[2]}</span></button>`).join('')}</section>
  </div></div>`;
 }
 
@@ -231,10 +237,10 @@ function obra(){
  const kc=(l,v,c='')=>`<div class="card" style="padding:16px 18px"><div class="kl">${l}</div><b style="font-size:22px;${c}">${v}</b></div>`;
  let body='';
  if(S.tab==='resumo')body=`<div class="stack" style="gap:14px">${et.map(e=>`<div style="display:grid;grid-template-columns:160px 1fr 50px;gap:16px;align-items:center;font-size:14px"><span style="font-weight:500">${e[0]}</span><span class="bar" style="height:10px"><span style="width:${e[1]}%;background:${e[1]===100?'#2e9b5a':o.cor}"></span></span><b style="text-align:right">${e[1]}%</b></div>`).join('')}</div>`;
- if(S.tab==='diario')body=`<div class="stack" style="gap:12px">${[['23','Set','Concretagem da laje do 8º pavimento','42 m³ lançados. Liberação da fôrma prevista para 07/10.','Ensolarado','Juliana Silva'],['22','Set','Recebimento de aço CA-50','12 t conferidas e armazenadas no pátio B.','Nublado','Marcos Pereira'],['20','Set','Vistoria de segurança','Guarda-corpos revisados nos pavimentos 6 e 7. Sem não conformidades.','Chuva leve','Ana Ribeiro']].map(d=>`<div style="display:flex;gap:16px;padding:14px;background:#f7f9fc;border-radius:10px"><div style="width:56px;flex-shrink:0;text-align:center"><b style="font-size:20px;display:block">${d[0]}</b><span class="lc">${d[1]}</span></div><div><b style="font-size:14px">${d[2]}</b><div style="font-size:13px;color:#3a465e;margin:4px 0">${d[3]}</div><span class="lc">Clima: ${d[4]} · ${d[5]}</span></div></div>`).join('')}</div>`;
- if(S.tab==='custos')body=`<div class="scroll-x"><div><div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;padding:10px 0;font-size:12px;font-weight:600;color:#5f6b82;text-transform:uppercase;border-bottom:1px solid #e4e8f0"><span>Categoria</span><span>Orçado</span><span>Realizado</span><span>Variação</span></div>${[['Materiais','R$ 980 mil','R$ 702 mil','-4,1%',1],['Mão de obra','R$ 720 mil','R$ 521 mil','+1,8%',0],['Equipamentos','R$ 310 mil','R$ 214 mil','-2,3%',1],['Serviços terceiros','R$ 390 mil','R$ 183 mil','0,0%',1]].map(c=>`<div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;padding:12px 0;font-size:14px;border-bottom:1px solid #eef1f6"><span style="font-weight:500">${c[0]}</span><span>${c[1]}</span><span>${c[2]}</span><b style="color:${c[4]?'#1a6b3c':'#a3221b'}">${c[3]}</b></div>`).join('')}</div></div>`;
+ if(S.tab==='diario')body=`<div class="stack" style="gap:12px">${[['23','Set','Concretagem da laje do 8º pavimento','42 m³ lançados. Liberação da fôrma prevista para 07/10.','Ensolarado','Juliana Silva'],['22','Set','Recebimento de aço CA-50','12 t conferidas e armazenadas no pátio B.','Nublado','Marcos Pereira'],['20','Set','Vistoria de segurança','Guarda-corpos revisados nos pavimentos 6 e 7. Sem não conformidades.','Chuva leve','Ana Ribeiro']].map(d=>`<div style="display:flex;gap:16px;padding:14px;background:#f7f8f9;border-radius:10px"><div style="width:56px;flex-shrink:0;text-align:center"><b style="font-size:20px;display:block">${d[0]}</b><span class="lc">${d[1]}</span></div><div><b style="font-size:14px">${d[2]}</b><div style="font-size:13px;color:#41464d;margin:4px 0">${d[3]}</div><span class="lc">Clima: ${d[4]} · ${d[5]}</span></div></div>`).join('')}</div>`;
+ if(S.tab==='custos')body=`<div class="scroll-x"><div><div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;padding:10px 0;font-size:12px;font-weight:600;color:#6a7078;text-transform:uppercase;border-bottom:1px solid #e5e7ea"><span>Categoria</span><span>Orçado</span><span>Realizado</span><span>Variação</span></div>${[['Materiais','R$ 980 mil','R$ 702 mil','-4,1%',1],['Mão de obra','R$ 720 mil','R$ 521 mil','+1,8%',0],['Equipamentos','R$ 310 mil','R$ 214 mil','-2,3%',1],['Serviços terceiros','R$ 390 mil','R$ 183 mil','0,0%',1]].map(c=>`<div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;padding:12px 0;font-size:14px;border-bottom:1px solid #eeeff1"><span style="font-weight:500">${c[0]}</span><span>${c[1]}</span><span>${c[2]}</span><b style="color:${c[4]?'#1a6b3c':'#a3221b'}">${c[3]}</b></div>`).join('')}</div></div>`;
  return `<div class="stack"><button class="lnk" style="align-self:flex-start;display:flex;align-items:center;gap:6px;font-size:14px" data-go="obras">${svg('M15 18l-6-6 6-6',16,2.2)}Obras</button>
- <div class="card" style="padding:22px;display:flex;gap:18px;align-items:center;flex-wrap:wrap">${tile(o,64,14,30)}<div class="grow"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><h1 style="font-size:22px">${esc(o.nome)}</h1>${bd(o.status)}</div><div style="font-size:14px;color:#3a465e;margin-top:4px">${esc(o.local)} · Responsável: ${esc(o.resp)}</div></div>
+ <div class="card" style="padding:22px;display:flex;gap:18px;align-items:center;flex-wrap:wrap">${tile(o,64,14,30)}<div class="grow"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><h1 style="font-size:22px">${esc(o.nome)}</h1>${bd(o.status)}</div><div style="font-size:14px;color:#41464d;margin-top:4px">${esc(o.local)} · Responsável: ${esc(o.resp)}</div></div>
  <div style="width:260px;max-width:100%"><div class="hd" style="font-size:13px;margin-bottom:6px"><span class="muted">Progresso físico</span><b>${o.prog}%</b></div><span class="bar" style="display:block;height:10px"><span style="width:${o.prog}%;background:${o.cor}"></span></span></div></div>
  <div class="g4">${kc('Orçamento',esc(o.orc))}${kc('Realizado',esc(o.real),'color:#1e7a44')}${kc('Período',esc(o.inicio)+' – '+esc(o.prazo))}${kc('Equipe em campo',o.equipe+' pessoas')}</div>
  <div class="card" style="overflow:hidden"><div class="tabs" role="tablist">${[['resumo','Etapas'],['diario','Diário de obra'],['custos','Custos']].map(t=>`<button role="tab" aria-selected="${S.tab===t[0]}" class="tab ${S.tab===t[0]?'on':''}" data-tab="${t[0]}">${t[1]}</button>`).join('')}</div><div style="padding:20px">${body}</div></div></div>`;
@@ -243,32 +249,32 @@ function obra(){
 function plan(){
  return `<div class="stack"><div><h1>Planejamento</h1><p class="sub">Cronograma físico das obras — 2026</p></div>
  <div class="card scroll-x" style="padding:18px 20px"><div>
- <div class="gantt-row" style="padding-top:0;border-bottom-color:#e4e8f0"><span style="font-size:12px;font-weight:600;color:#5f6b82;text-transform:uppercase">Obra</span><div class="months">${'Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez'.split(' ').map(m=>`<span>${m}</span>`).join('')}</div></div>
+ <div class="gantt-row" style="padding-top:0;border-bottom-color:#e5e7ea"><span style="font-size:12px;font-weight:600;color:#6a7078;text-transform:uppercase">Obra</span><div class="months">${'Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez'.split(' ').map(m=>`<span>${m}</span>`).join('')}</div></div>
  ${S.obras.map(o=>`<div class="gantt-row"><button data-obra="${o.id}" style="border:0;background:none;padding:4px 0;text-align:left"><b style="font-size:14px;display:block">${esc(o.nome)}</b><span class="lc">${esc(o.inicio)} – ${esc(o.prazo)}</span></button><div class="track"><div class="gb" style="left:${(o.gs-1)/12*100}%;width:${(o.ge-o.gs+1)/12*100}%;background:${o.cor}99"><i style="width:${o.prog}%;background:${o.cor}"></i><em>${o.prog}%</em></div><div class="today"></div></div></div>`).join('')}
- <div style="display:flex;gap:18px;padding-top:12px;font-size:12px;color:#3a465e"><span style="display:flex;align-items:center;gap:6px"><span style="width:2px;height:14px;background:#d6453d"></span>Hoje (23 Set)</span><span>Parte escura da barra = avanço físico</span></div></div></div></div>`;
+ <div style="display:flex;gap:18px;padding-top:12px;font-size:12px;color:#41464d"><span style="display:flex;align-items:center;gap:6px"><span style="width:2px;height:14px;background:#d6453d"></span>Hoje (23 Set)</span><span>Parte escura da barra = avanço físico</span></div></div></div></div>`;
 }
 
 function fin(){
  const fl=[['Abr',.98,.86],['Mai',1.10,.93],['Jun',1.04,1.02],['Jul',1.18,.97],['Ago',1.21,1.06],['Set',1.25,.98]];
  const h=v=>Math.round(v/1.4*180);
  return `<div class="stack"><div><h1>Financeiro</h1><p class="sub">Setembro de 2026</p></div>
- <div class="g4">${[['Receitas no mês','R$ 1,25M','#1a6b3c'],['Despesas no mês','R$ 0,98M','#a3221b'],['Saldo','R$ 0,27M','#172036'],['Contas em aberto',abertas(),'#172036']].map(k=>`<div class="card" style="padding:16px 18px"><div class="kl">${k[0]}</div><b style="font-size:22px;color:${k[2]}">${k[1]}</b></div>`).join('')}</div>
- <div class="gfin"><section class="card pad stack" style="gap:14px"><div class="hd"><h2>Receitas x Despesas</h2><div style="display:flex;gap:12px;font-size:12px;color:#3a465e"><span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:#2f5bd8;border-radius:2px"></span>Receitas</span><span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:#e0892b;border-radius:2px"></span>Despesas</span></div></div>
- <div style="height:200px;display:flex;align-items:flex-end;gap:14px;border-bottom:1px solid #e4e8f0;padding:0 6px">${fl.map(f=>`<div style="flex-grow:1;display:flex;justify-content:center;align-items:flex-end;gap:3px" title="${f[0]}: receitas R$ ${f[1].toFixed(2).replace('.',',')}M, despesas R$ ${f[2].toFixed(2).replace('.',',')}M"><div style="width:18px;height:${h(f[1])}px;background:#2f5bd8;border-radius:4px 4px 0 0"></div><div style="width:18px;height:${h(f[2])}px;background:#e0892b;border-radius:4px 4px 0 0"></div></div>`).join('')}</div>
+ <div class="g4">${[['Receitas no mês','R$ 1,25M','#1a6b3c'],['Despesas no mês','R$ 0,98M','#a3221b'],['Saldo','R$ 0,27M','#1d2126'],['Contas em aberto',abertas(),'#1d2126']].map(k=>`<div class="card" style="padding:16px 18px"><div class="kl">${k[0]}</div><b style="font-size:22px;color:${k[2]}">${k[1]}</b></div>`).join('')}</div>
+ <div class="gfin"><section class="card pad stack" style="gap:14px"><div class="hd"><h2>Receitas x Despesas</h2><div style="display:flex;gap:12px;font-size:12px;color:#41464d"><span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:#2e3339;border-radius:2px"></span>Receitas</span><span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:#e0892b;border-radius:2px"></span>Despesas</span></div></div>
+ <div style="height:200px;display:flex;align-items:flex-end;gap:14px;border-bottom:1px solid #e5e7ea;padding:0 6px">${fl.map(f=>`<div style="flex-grow:1;display:flex;justify-content:center;align-items:flex-end;gap:3px" title="${f[0]}: receitas R$ ${f[1].toFixed(2).replace('.',',')}M, despesas R$ ${f[2].toFixed(2).replace('.',',')}M"><div style="width:18px;height:${h(f[1])}px;background:#2e3339;border-radius:4px 4px 0 0"></div><div style="width:18px;height:${h(f[2])}px;background:#e0892b;border-radius:4px 4px 0 0"></div></div>`).join('')}</div>
  <div style="display:flex;gap:14px;padding:0 6px">${fl.map(f=>`<span class="lc" style="flex-grow:1;flex-basis:0;text-align:center">${f[0]}</span>`).join('')}</div></section>
  <section class="card pad"><h2 style="margin-bottom:6px">Contas a pagar</h2>
- ${CONTAS.map(c=>`<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid #eef1f6"><div class="grow"><b style="font-size:14px;display:block">${c[1]}</b><span class="lc">${c[2]} · vence ${c[3]}</span></div><b style="font-size:14px;width:100px;text-align:right">${c[4]}</b>${S.pagas[c[0]]?`<span style="width:84px;text-align:center;font-size:12px;font-weight:600;color:#1e7a44;background:#e3f5e9;border-radius:6px;padding:8px 0">Paga</span>`:`<button class="btn out" data-pagar="${c[0]}">Pagar</button>`}</div>`).join('')}</section></div></div>`;
+ ${CONTAS.map(c=>`<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid #eeeff1"><div class="grow"><b style="font-size:14px;display:block">${c[1]}</b><span class="lc">${c[2]} · vence ${c[3]}</span></div><b style="font-size:14px;width:100px;text-align:right">${c[4]}</b>${S.pagas[c[0]]?`<span style="width:84px;text-align:center;font-size:12px;font-weight:600;color:#1e7a44;background:#e3f5e9;border-radius:6px;padding:8px 0">Paga</span>`:`<button class="btn out" data-pagar="${c[0]}">Pagar</button>`}</div>`).join('')}</section></div></div>`;
 }
 
 function compras(){
  return `<div class="stack"><div><h1>Compras</h1><p class="sub">${pendentes()} pedidos aguardando aprovação</p></div>
  <div class="card scroll-x" style="overflow:hidden"><div><div class="tbl-h cols-ped"><span>Pedido</span><span>Item</span><span>Fornecedor</span><span>Obra</span><span>Valor</span><span>Status</span></div>
- ${PED.map(p=>{const st=pedStatus(p);return `<div class="tbl-r cols-ped" style="padding:12px 20px"><b style="color:#3a465e">${p[0]}</b><span><b style="display:block">${p[1]}</b><span class="lc">${p[2]}</span></span><span>${p[3]}</span><span>${p[4]}</span><b>${p[5]}</b><span style="display:flex;align-items:center;gap:8px">${bd(st)}${st==='Aguardando aprovação'?`<button class="btn sm" data-aprovar="${p[0]}">Aprovar</button>`:''}</span></div>`}).join('')}</div></div></div>`;
+ ${PED.map(p=>{const st=pedStatus(p);return `<div class="tbl-r cols-ped" style="padding:12px 20px"><b style="color:#41464d">${p[0]}</b><span><b style="display:block">${p[1]}</b><span class="lc">${p[2]}</span></span><span>${p[3]}</span><span>${p[4]}</span><b>${p[5]}</b><span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">${bd(st)}${st==='Aguardando aprovação'?`<button class="btn sm" data-aprovar="${p[0]}">Aprovar</button>`:''}</span></div>`}).join('')}</div></div></div>`;
 }
 
 /* ---------- Telas dos demais módulos ---------- */
 const ph=(t,s,btn='')=>`<div class="hd" style="align-items:flex-end;gap:12px;flex-wrap:wrap"><div><h1>${t}</h1><p class="sub">${s}</p></div>${btn}</div>`;
-const kc4=a=>`<div class="g4">${a.map(k=>`<div class="card" style="padding:16px 18px"><div class="kl">${k[0]}</div><b style="font-size:22px;color:${k[2]||'#172036'}">${k[1]}</b>${k[3]?`<div class="kd muted" style="margin-top:2px">${k[3]}</div>`:''}</div>`).join('')}</div>`;
+const kc4=a=>`<div class="g4">${a.map(k=>`<div class="card" style="padding:16px 18px"><div class="kl">${k[0]}</div><b style="font-size:22px;color:${k[2]||'#1d2126'}">${k[1]}</b>${k[3]?`<div class="kd muted" style="margin-top:2px">${k[3]}</div>`:''}</div>`).join('')}</div>`;
 const tbl=(cols,hs,rows,empty)=>`<div class="card scroll-x" style="overflow:hidden"><div><div class="tbl-h" style="grid-template-columns:${cols}">${hs.map(h=>`<span>${h}</span>`).join('')}</div>${rows.map(r=>`<div class="tbl-r" style="grid-template-columns:${cols};padding:12px 20px">${r.map(c=>`<span style="min-width:0">${c}</span>`).join('')}</div>`).join('')}${rows.length?'':`<div style="padding:40px;text-align:center" class="muted">${empty||'Nenhum registro encontrado.'}</div>`}</div></div>`;
 const two=(a,b)=>`<b style="display:block;font-size:14px;overflow:hidden;text-overflow:ellipsis">${a}</b><span class="lc">${b}</span>`;
 const sub=(k,d)=>S.sub[k]||d;
@@ -278,7 +284,7 @@ const tabs=(k,opts)=>`<div class="tabs" role="tablist">${opts.map(t=>`<button ro
 const act=(key,label,msg)=>`<button class="btn sm" data-do="${key}" data-msg="${esc(msg)}">${label}</button>`;
 const plusBtn=(key,label,msg)=>`<button class="btn" data-do="${key}" data-msg="${esc(msg)}">${svg('M12 5v14M5 12h14',16,2.2)}${label}</button>`;
 const bar=(v,c)=>`<span style="display:flex;align-items:center;gap:8px"><span class="bar"><span style="width:${Math.min(100,v)}%;background:${c}"></span></span><b style="width:38px;font-size:13px">${v}%</b></span>`;
-const stars=n=>`<span class="star" aria-label="${n} de 5">${'★'.repeat(Math.round(n))}<span style="color:#d9dfea">${'★'.repeat(5-Math.round(n))}</span></span> <b style="font-size:13px">${n.toFixed(1).replace('.',',')}</b>`;
+const stars=n=>`<span class="star" aria-label="${n} de 5">${'★'.repeat(Math.round(n))}<span style="color:#dcdfe3">${'★'.repeat(5-Math.round(n))}</span></span> <b style="font-size:13px">${n.toFixed(1).replace('.',',')}</b>`;
 const money=m=>m>=1?'R$ '+m.toFixed(2).replace('.',',')+'M':'R$ '+Math.round(m*1000)+' mil';
 
 /* Projetos */
@@ -288,7 +294,7 @@ function projetos(){
  const st=p=>S.done[p[0]]?'Aprovado':p[5];
  const t=sub('proj','Projetos');
  const body=t==='Projetos'?flat(tbl('2fr 1.3fr .6fr 1.3fr 1.5fr',['Projeto','Obra','Revisão','Projetista','Status'],PROJ.map(p=>[`<b>${p[1]}</b>`,p[2],`<span class="lc" style="font-weight:600">${p[3]}</span>`,p[4],`<span style="display:flex;gap:8px;align-items:center">${bd(st(p))}${st(p)==='Em revisão'?act(p[0],'Aprovar','Projeto “'+p[1]+'” aprovado'):''}</span>`])))
- :`<div class="pad stack" style="gap:0"><h2 style="margin-bottom:8px">Interferências detectadas na compatibilização (BIM)</h2>${CLASH.map((c,i)=>{const ok=S.done['cl'+i];const pr=PRIO[c[3]];return `<div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid #eef1f6;flex-wrap:wrap"><span class="grow">${two(c[0],c[1]+' · '+c[2])}</span><span class="bd" style="background:${pr[0]};color:${pr[1]}">${c[3]}</span>${ok?bd('Resolvida'):act('cl'+i,'Marcar resolvida','Interferência resolvida')}</div>`}).join('')}</div>`;
+ :`<div class="pad stack" style="gap:0"><h2 style="margin-bottom:8px">Interferências detectadas na compatibilização (BIM)</h2>${CLASH.map((c,i)=>{const ok=S.done['cl'+i];const pr=PRIO[c[3]];return `<div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid #eeeff1;flex-wrap:wrap"><span class="grow">${two(c[0],c[1]+' · '+c[2])}</span><span class="bd" style="background:${pr[0]};color:${pr[1]}">${c[3]}</span>${ok?bd('Resolvida'):act('cl'+i,'Marcar resolvida','Interferência resolvida')}</div>`}).join('')}</div>`;
  return `<div class="stack">${ph('Projetos','Gestão de projetos e compatibilização',plusBtn('pjnovo','Novo projeto','Projeto cadastrado (protótipo)'))}
  ${kc4([['Projetos ativos',PROJ.length],['Em revisão',PROJ.filter(p=>st(p)==='Em revisão').length,'#8a5800'],['Aprovados',PROJ.filter(p=>st(p)==='Aprovado').length,'#1a6b3c'],['Interferências abertas',CLASH.filter((c,i)=>!S.done['cl'+i]).length,'#a3221b']])}
  <div class="card" style="overflow:hidden">${tabs('proj',['Projetos','Compatibilização'])}${body}</div></div>`;
@@ -302,9 +308,9 @@ function orcamento(){
  const sel=`<div style="display:flex;gap:8px;flex-wrap:wrap">${S.obras.map(x=>`<button class="chip ${x.id===o.id?'on':''}" data-sub="orc|${x.id}">${esc(x.nome)}</button>`).join('')}</div>`;
  if(isNaN(v))return `<div class="stack">${ph('Orçamento','Composição de custos por obra')}${sel}<div class="card pad muted" style="text-align:center;padding:40px">Esta obra ainda não tem orçamento. <button class="lnk" data-do="orc${o.id}" data-msg="Orçamento iniciado para ${esc(o.nome)}">Iniciar orçamento</button></div></div>`;
  const cd=v/1.25;let acc=0;
- const rows=COMP.map(c=>{acc+=c[2];const cls=acc<=.5?'A':acc<=.8?'B':'C';const cc={A:['#fde4e2','#a3221b'],B:['#fdf1d8','#8a5800'],C:['#eceff4','#3a465e']}[cls];return [`<b>${c[0]}</b>`,c[1],`<b>${money(cd*c[2])}</b>`,bar(Math.round(c[2]*100),o.cor),`<span class="bd" style="background:${cc[0]};color:${cc[1]}">Classe ${cls}</span>`]});
+ const rows=COMP.map(c=>{acc+=c[2];const cls=acc<=.5?'A':acc<=.8?'B':'C';const cc={A:['#fde4e2','#a3221b'],B:['#fdf1d8','#8a5800'],C:['#eceef0','#41464d']}[cls];return [`<b>${c[0]}</b>`,c[1],`<b>${money(cd*c[2])}</b>`,bar(Math.round(c[2]*100),o.cor),`<span class="bd" style="background:${cc[0]};color:${cc[1]}">Classe ${cls}</span>`]});
  return `<div class="stack">${ph('Orçamento','Composição de custos e curva ABC — '+esc(o.nome),`<button class="btn ghost" data-do="orcx" data-msg="Planilha orçamentária exportada (protótipo)">Exportar planilha</button>`)}${sel}
- ${kc4([['Custo direto',money(cd)],['BDI','25,0%'],['Preço de venda',money(v),'#2447b3'],['Realizado até hoje',esc(o.real),'#1a6b3c']])}
+ ${kc4([['Custo direto',money(cd)],['BDI','25,0%'],['Preço de venda',money(v),'#2e3339'],['Realizado até hoje',esc(o.real),'#1a6b3c']])}
  ${tbl('2.2fr .6fr 1fr 1.6fr 1fr',['Serviço','Unid.','Custo','Participação','Curva ABC'],rows)}</div>`;
 }
 
@@ -325,9 +331,9 @@ const EQP=[['q1','Grua torre GT-45','Plaza Corporate','Em operação','3.412 h',
 function equipamentos(){
  const cnt=s=>EQP.filter(e=>e[3]===s).length;
  return `<div class="stack">${ph('Equipamentos','Frota própria e locada',plusBtn('eqnovo','Novo equipamento','Equipamento cadastrado (protótipo)'))}
- ${kc4([['Equipamentos',EQP.length],['Em operação',cnt('Em operação'),'#1a6b3c'],['Em manutenção',cnt('Manutenção'),'#a3221b'],['Disponíveis',cnt('Disponível'),'#2447b3']])}
- <div class="g3">${EQP.map(e=>`<div class="card eq"><div class="hd" style="gap:10px;align-items:flex-start"><span class="kt" style="width:42px;height:42px;background:#e6ecfd;color:#2447b3">${svg(I.equipamentos,20)}</span><span class="grow">${two(e[1],e[2])}</span>${bd(e[3])}</div>
- <div style="display:flex;justify-content:space-between;font-size:13px;border-top:1px solid #eef1f6;padding-top:10px"><span class="muted">Horímetro</span><b>${e[4]}</b></div><div style="display:flex;justify-content:space-between;font-size:13px"><span class="muted">Próxima manutenção</span><b>${S.done[e[0]]?'Agendada':e[5]}</b></div>
+ ${kc4([['Equipamentos',EQP.length],['Em operação',cnt('Em operação'),'#1a6b3c'],['Em manutenção',cnt('Manutenção'),'#a3221b'],['Disponíveis',cnt('Disponível'),'#2e3339']])}
+ <div class="g3">${EQP.map(e=>`<div class="card eq"><div class="hd" style="gap:10px;align-items:flex-start"><span class="kt" style="width:42px;height:42px;background:#eceef1;color:#2e3339">${svg(I.equipamentos,20)}</span><span class="grow">${two(e[1],e[2])}</span>${bd(e[3])}</div>
+ <div style="display:flex;justify-content:space-between;font-size:13px;border-top:1px solid #eeeff1;padding-top:10px"><span class="muted">Horímetro</span><b>${e[4]}</b></div><div style="display:flex;justify-content:space-between;font-size:13px"><span class="muted">Próxima manutenção</span><b>${S.done[e[0]]?'Agendada':e[5]}</b></div>
  ${S.done[e[0]]?`<span class="bd" style="background:#e3f5e9;color:#1a6b3c;align-self:flex-start">Manutenção agendada</span>`:`<button class="btn ghost sm" style="align-self:flex-start" data-do="${e[0]}" data-msg="Manutenção agendada: ${e[1]}">Agendar manutenção</button>`}</div>`).join('')}</div></div>`;
 }
 
@@ -335,10 +341,10 @@ function equipamentos(){
 const COLAB=[['Juliana Silva','Engenheira civil','Vista do Sol','03/2021','Ativo'],['Ricardo Alves','Engenheiro de planejamento','Plaza Corporate','08/2019','Ativo'],['Marcos Pereira','Mestre de obras','Galpão XPTO','01/2018','Ativo'],['Ana Ribeiro','Técnica de segurança','Escola Horizonte','06/2022','Férias'],['Paulo Nunes','Engenheiro civil','Clínica Santa Luzia','11/2020','Ativo'],['Fernanda Costa','Arquiteta','Shopping Park Sul','02/2023','Ativo'],['José Santos','Pedreiro','Vista do Sol','04/2024','Afastado'],['Luana Martins','Almoxarife','Plaza Corporate','09/2022','Ativo']];
 function rh(){
  const t=sub('rh','Equipe');
- const body=t==='Equipe'?flat(tbl('1.8fr 1.8fr 1.4fr 1fr 1fr',['Colaborador','Função','Obra','Admissão','Status'],COLAB.map(c=>[`<span style="display:flex;align-items:center;gap:10px"><span class="av" style="width:32px;height:32px;font-size:11px;background:#e6ecfd;color:#2f55c9">${c[0].split(' ').map(x=>x[0]).join('')}</span><b>${c[0]}</b></span>`,c[1],c[2],c[3],bd(c[4])])))
+ const body=t==='Equipe'?flat(tbl('1.8fr 1.8fr 1.4fr 1fr 1fr',['Colaborador','Função','Obra','Admissão','Status'],COLAB.map(c=>[`<span style="display:flex;align-items:center;gap:10px"><span class="av" style="width:32px;height:32px;font-size:11px;background:#eceef1;color:#3d434b">${c[0].split(' ').map(x=>x[0]).join('')}</span><b>${c[0]}</b></span>`,c[1],c[2],c[3],bd(c[4])])))
  :`<div class="pad stack" style="gap:14px"><h2>Presença em campo hoje</h2>${S.obras.filter(o=>o.equipe>0).map(o=>{const p=Math.round(o.equipe*.92);const pc=Math.round(p/o.equipe*100);return `<div style="display:grid;grid-template-columns:minmax(0,1.3fr) 1fr 60px;gap:12px;align-items:center;font-size:14px"><span class="nm">${esc(o.nome)}</span><span class="bar" style="height:10px"><span style="width:${pc}%;background:${o.cor}"></span></span><b style="text-align:right">${p}/${o.equipe}</b></div>`}).join('')}</div>`;
  return `<div class="stack">${ph('RH','Pessoas, ponto e alocação por obra',plusBtn('rhnovo','Nova admissão','Admissão iniciada (protótipo)'))}
- ${kc4([['Colaboradores','188'],['Em campo hoje','173','#1a6b3c'],['Afastados / férias','9','#8a5800'],['Horas extras no mês','1.246 h','#2447b3']])}
+ ${kc4([['Colaboradores','188'],['Em campo hoje','173','#1a6b3c'],['Afastados / férias','9','#8a5800'],['Horas extras no mês','1.246 h','#2e3339']])}
  <div class="card" style="overflow:hidden">${tabs('rh',['Equipe','Presença'])}${body}</div></div>`;
 }
 
@@ -349,8 +355,8 @@ function seguranca(){
  const dds=S.done.dds?22:21;
  return `<div class="stack">${ph('Segurança do Trabalho','Inspeções, treinamentos e indicadores',S.done.dds?'':plusBtn('dds','Registrar DDS','DDS registrado para hoje'))}
  ${kc4([['Dias sem acidentes','214','#1a6b3c'],['DDS no mês',dds],['Não conformidades abertas',INSP.filter(i=>i[3]!=='Conforme').length,'#a3221b'],['EPIs a vencer (30 dias)','37','#8a5800']])}
- <div class="gfin"><section class="card pad"><h2 style="margin-bottom:6px">Inspeções recentes</h2>${INSP.map(i=>`<div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #eef1f6"><span class="grow">${two(i[0],i[1]+' · '+i[2])}</span>${bd(i[3])}</div>`).join('')}</section>
- <section class="card pad"><h2 style="margin-bottom:6px">Treinamentos NR a vencer</h2>${TREIN.map(t=>`<div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #eef1f6;flex-wrap:wrap"><span class="grow">${two(t[1],t[2]+' · '+t[3])}</span>${S.done[t[0]]?bd('Agendado'):act(t[0],'Agendar turma','Turma agendada: '+t[1])}</div>`).join('')}</section></div></div>`;
+ <div class="gfin"><section class="card pad"><h2 style="margin-bottom:6px">Inspeções recentes</h2>${INSP.map(i=>`<div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #eeeff1"><span class="grow">${two(i[0],i[1]+' · '+i[2])}</span>${bd(i[3])}</div>`).join('')}</section>
+ <section class="card pad"><h2 style="margin-bottom:6px">Treinamentos NR a vencer</h2>${TREIN.map(t=>`<div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #eeeff1;flex-wrap:wrap"><span class="grow">${two(t[1],t[2]+' · '+t[3])}</span>${S.done[t[0]]?bd('Agendado'):act(t[0],'Agendar turma','Turma agendada: '+t[1])}</div>`).join('')}</section></div></div>`;
 }
 
 /* Documentos */
@@ -361,7 +367,7 @@ function documentos(){
  const f=sub('doc','Todos');const q=S.q.toLowerCase();
  const list=DOCS.filter(d=>(f==='Todos'||d[2]===f||(f==='Vencendo'&&docSt(d)==='Vencendo')));
  return `<div class="stack">${ph('Documentos','ARTs, alvarás, licenças e documentos de segurança',plusBtn('docup','Enviar documento','Documento enviado (protótipo)'))}
- ${kc4([['Documentos','142'],['Vencendo em 15 dias',docVenc(),'#8a5800'],['Vencidos',DOCS.filter(d=>docSt(d)==='Vencido').length,'#a3221b'],['Renovações em andamento',DOCS.filter(d=>S.done[d[0]]).length,'#2447b3']])}
+ ${kc4([['Documentos','142'],['Vencendo em 15 dias',docVenc(),'#8a5800'],['Vencidos',DOCS.filter(d=>docSt(d)==='Vencido').length,'#a3221b'],['Renovações em andamento',DOCS.filter(d=>S.done[d[0]]).length,'#2e3339']])}
  ${chips('doc',['Todos','Vencendo','ART','Alvará','Licença','Segurança'])}
  ${tbl('2.4fr 1fr 1.4fr 1fr 1.8fr',['Documento','Tipo','Obra','Validade','Status'],list.map(d=>[`<b>${d[1]}</b>`,d[2],d[3],d[4],`<span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${bd(docSt(d))}${(d[5]!=='Vigente'&&!S.done[d[0]])?act(d[0],'Renovar','Renovação solicitada: '+d[1]):''}</span>`]))}</div>`;
 }
@@ -371,18 +377,18 @@ const CTR=[['CT-2026-014','Construtora Litoral SPE','Cliente','Vista do Sol','R$
 function contratos(){
  const f=sub('ctr','Todos');const list=CTR.filter(c=>f==='Todos'||c[2]+'s'===f);
  return `<div class="stack">${ph('Contratos','Contratos com clientes e empreiteiros',plusBtn('ctnovo','Novo contrato','Contrato criado (protótipo)'))}
- ${kc4([['Valor contratado','R$ 9,93M'],['Medido','R$ 5,02M','#1a6b3c'],['A medir','R$ 4,91M','#2447b3'],['Aditivos no ano','4','#8a5800']])}
+ ${kc4([['Valor contratado','R$ 9,93M'],['Medido','R$ 5,02M','#1a6b3c'],['A medir','R$ 4,91M','#2e3339'],['Aditivos no ano','4','#8a5800']])}
  ${chips('ctr',['Todos','Clientes','Empreiteiros'])}
- ${tbl('1.1fr 2fr 1.3fr 1fr 1.4fr 1.6fr',['Contrato','Contratante / contratado','Obra','Valor','Medido','Status'],list.map(c=>[`<b style="color:#3a465e">${c[0]}</b>`,two(c[1],c[2]),c[3],`<b>${c[4]}</b>`,bar(c[5],'#2f5bd8'),`<span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${bd(c[6])}${c[6]==='Em medição'&&!S.done[c[0]]?act(c[0],'Aprovar medição','Medição aprovada: '+c[0]):''}</span>`]))}</div>`;
+ ${tbl('1.1fr 2fr 1.3fr 1fr 1.4fr 1.6fr',['Contrato','Contratante / contratado','Obra','Valor','Medido','Status'],list.map(c=>[`<b style="color:#41464d">${c[0]}</b>`,two(c[1],c[2]),c[3],`<b>${c[4]}</b>`,bar(c[5],'#2e3339'),`<span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${bd(c[6])}${c[6]==='Em medição'&&!S.done[c[0]]?act(c[0],'Aprovar medição','Medição aprovada: '+c[0]):''}</span>`]))}</div>`;
 }
 
 /* Clientes */
 const CLI=[['Construtora Litoral SPE','Marina Duarte','(47) 99812-4410','Vista do Sol','R$ 2,40M',9.2],['Plaza Empreendimentos','Roberto Faria','(11) 98450-2231','Plaza Corporate','R$ 3,10M',8.4],['Park Sul Participações','Cláudia Menezes','(51) 99620-7788','Shopping Park Sul','R$ 1,20M',8.9],['Prefeitura de Belo Horizonte','Secretaria de Obras','(31) 3277-4000','Escola Horizonte','R$ 0,77M',7.8],['Grupo Santa Luzia Saúde','Dr. Henrique Lopes','(19) 99301-5566','Clínica Santa Luzia','R$ 0,58M',9.5],['XPTO Logística','Paula Andrade','(11) 97788-1200','Galpão XPTO','R$ 0,95M',7.1]];
 function clientes(){
  return `<div class="stack">${ph('Clientes','Carteira de clientes e satisfação',plusBtn('clnovo','Novo cliente','Cliente cadastrado (protótipo)'))}
- ${kc4([['Clientes ativos',CLI.length],['Receita contratada','R$ 9,00M','#2447b3'],['Satisfação média','8,5 / 10','#1a6b3c'],['Propostas em aberto','3','#8a5800']])}
- <div class="g3">${CLI.map((c,i)=>`<div class="card eq"><div style="display:flex;gap:12px;align-items:center"><span class="av" style="background:#e6ecfd;color:#2f55c9">${c[0].split(' ').filter(w=>w.length>2).slice(0,2).map(w=>w[0]).join('')}</span><span class="grow">${two(c[0],c[1])}</span></div>
- <div style="display:flex;justify-content:space-between;font-size:13px;border-top:1px solid #eef1f6;padding-top:10px"><span class="muted">Obra</span><b>${c[3]}</b></div><div style="display:flex;justify-content:space-between;font-size:13px"><span class="muted">Contrato</span><b>${c[4]}</b></div><div style="display:flex;justify-content:space-between;font-size:13px"><span class="muted">Satisfação</span><b style="color:${c[5]>=8.5?'#1a6b3c':c[5]>=7.5?'#8a5800':'#a3221b'}">${String(c[5]).replace('.',',')}</b></div>
+ ${kc4([['Clientes ativos',CLI.length],['Receita contratada','R$ 9,00M','#2e3339'],['Satisfação média','8,5 / 10','#1a6b3c'],['Propostas em aberto','3','#8a5800']])}
+ <div class="g3">${CLI.map((c,i)=>`<div class="card eq"><div style="display:flex;gap:12px;align-items:center"><span class="av" style="background:#eceef1;color:#3d434b">${c[0].split(' ').filter(w=>w.length>2).slice(0,2).map(w=>w[0]).join('')}</span><span class="grow">${two(c[0],c[1])}</span></div>
+ <div style="display:flex;justify-content:space-between;font-size:13px;border-top:1px solid #eeeff1;padding-top:10px"><span class="muted">Obra</span><b>${c[3]}</b></div><div style="display:flex;justify-content:space-between;font-size:13px"><span class="muted">Contrato</span><b>${c[4]}</b></div><div style="display:flex;justify-content:space-between;font-size:13px"><span class="muted">Satisfação</span><b style="color:${c[5]>=8.5?'#1a6b3c':c[5]>=7.5?'#8a5800':'#a3221b'}">${String(c[5]).replace('.',',')}</b></div>
  <div style="display:flex;gap:8px"><button class="btn ghost sm" data-do="cl-rel${i}" data-msg="Relatório enviado a ${esc(c[0])}">Enviar relatório</button><span class="lc" style="align-self:center">${c[2]}</span></div></div>`).join('')}</div></div>`;
 }
 
@@ -391,7 +397,7 @@ const FORN=[['f1','Cimentos Sul Ltda','Cimento e argamassas',4.6,'3 dias',42,'Ho
 function fornecedores(){
  const st=f=>S.done[f[0]]?'Homologado':f[6];
  return `<div class="stack">${ph('Fornecedores','Cadastro, homologação e desempenho',plusBtn('fnovo','Novo fornecedor','Fornecedor cadastrado (protótipo)'))}
- ${kc4([['Fornecedores',FORN.length],['Homologados',FORN.filter(f=>st(f)==='Homologado').length,'#1a6b3c'],['Em avaliação',FORN.filter(f=>st(f)==='Em avaliação').length,'#8a5800'],['Compras no ano','R$ 4,18M','#2447b3']])}
+ ${kc4([['Fornecedores',FORN.length],['Homologados',FORN.filter(f=>st(f)==='Homologado').length,'#1a6b3c'],['Em avaliação',FORN.filter(f=>st(f)==='Em avaliação').length,'#8a5800'],['Compras no ano','R$ 4,18M','#2e3339']])}
  ${tbl('2fr 1.6fr 1.3fr .9fr .8fr 1.6fr',['Fornecedor','Categoria','Avaliação','Prazo médio','Pedidos','Status'],FORN.map(f=>[`<b>${f[1]}</b>`,f[2],f[3]?stars(f[3]):'<span class="lc">Sem histórico</span>',f[4],f[5],`<span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${bd(st(f))}${st(f)==='Em avaliação'?act(f[0],'Homologar',f[1]+' homologado'):''}</span>`]))}</div>`;
 }
 
@@ -400,7 +406,7 @@ const MKT=[['m1','Cimento CP-II 50kg','Cimentos Sul Ltda','R$ 41,90','sc','2 dia
 function marketplace(){
  const n=Object.keys(S.cart).length;
  return `<div class="stack">${ph('Marketplace','Compre de fornecedores homologados com preço negociado',`<button class="btn" data-cart="enviar" ${n?'':'disabled style="opacity:.5;cursor:not-allowed"'}>${svg(I.compras,16,2)}Enviar cotação (${n})</button>`)}
- <div class="g3">${MKT.map(m=>{const on=S.cart[m[0]];return `<div class="card eq"><div style="height:90px;border-radius:10px;background:#f1f4fa;display:flex;align-items:center;justify-content:center;color:#8c96a8">${svg(I.estoque,34,1.6)}</div>
+ <div class="g3">${MKT.map(m=>{const on=S.cart[m[0]];return `<div class="card eq"><div style="height:90px;border-radius:10px;background:#f2f3f5;display:flex;align-items:center;justify-content:center;color:#8f959d">${svg(I.estoque,34,1.6)}</div>
  <div>${two(m[1],m[2])}</div><div style="display:flex;align-items:baseline;gap:6px"><b style="font-size:20px">${m[3]}</b><span class="lc">/ ${m[4]}</span>${m[6]?`<span class="bd" style="background:#e3f5e9;color:#1a6b3c;margin-left:auto">-${m[6]}%</span>`:''}</div><span class="lc">Entrega em ${m[5]}</span>
  <button class="btn ${on?'ghost':''} sm" data-cart="${m[0]}">${on?'✓ Na cotação — remover':'Adicionar à cotação'}</button></div>`}).join('')}</div></div>`;
 }
@@ -411,36 +417,36 @@ function relatorios(){
  const pl=[2,6,12,20,30,41,52,62,72,81,90,100],re=[2,5,10,17,26,36,46,55,64];
  const pt=a=>a.map((v,i)=>`${40+i*32},${170-v*1.5}`).join(' ');
  return `<div class="stack">${ph('Relatórios','Relatórios gerenciais e indicadores')}
- <div class="gfin"><section class="card pad stack" style="gap:10px"><div class="hd"><h2>Curva S — carteira 2026</h2><div style="display:flex;gap:12px;font-size:12px;color:#3a465e"><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;border-top:2px dashed #8c96a8"></span>Planejado</span><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:3px;background:#2f5bd8"></span>Realizado</span></div></div>
- <svg viewBox="0 0 400 195" width="100%" height="210" role="img" aria-label="Curva S: planejado 72% e realizado 64% em setembro"><g stroke="#eef1f6">${[20,57.5,95,132.5,170].map(y=>`<line x1="34" y1="${y}" x2="392" y2="${y}"/>`).join('')}</g>
- <g font-size="10" fill="#5f6b82" text-anchor="end">${[100,75,50,25,0].map((v,i)=>`<text x="28" y="${23+i*37.5}">${v}%</text>`).join('')}</g>
- <g font-size="10" fill="#5f6b82" text-anchor="middle">${'J F M A M J J A S O N D'.split(' ').map((m,i)=>`<text x="${40+i*32}" y="188">${m}</text>`).join('')}</g>
- <polyline points="${pt(pl)}" fill="none" stroke="#8c96a8" stroke-width="1.8" stroke-dasharray="5 4"/><polyline points="${pt(re)}" fill="none" stroke="#2f5bd8" stroke-width="2.6"/><circle cx="${40+8*32}" cy="${170-64*1.5}" r="4" fill="#2f5bd8"/></svg>
- <div class="g3" style="gap:8px;border-top:1px solid #eef1f6;padding-top:12px;text-align:center"><div><div class="lc">Planejado (set)</div><b style="font-size:18px">72%</b></div><div><div class="lc">Realizado (set)</div><b style="font-size:18px;color:#2447b3">64%</b></div><div><div class="lc">Desvio</div><b style="font-size:18px;color:#a3221b">-8 p.p.</b></div></div></section>
- <section class="card pad"><h2 style="margin-bottom:6px">Relatórios disponíveis</h2>${REL.map(r=>`<div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #eef1f6"><span class="kt" style="width:36px;height:36px;border-radius:9px;background:#e6ecfd;color:#2447b3">${svg(I.relatorios,18)}</span><span class="grow">${two(r[1],r[2])}</span><button class="btn ghost sm" data-do="${r[0]}x" data-msg="Relatório “${r[1]}” gerado em PDF">Gerar PDF</button></div>`).join('')}</section></div></div>`;
+ <div class="gfin"><section class="card pad stack" style="gap:10px"><div class="hd"><h2>Curva S — carteira 2026</h2><div style="display:flex;gap:12px;font-size:12px;color:#41464d"><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;border-top:2px dashed #8f959d"></span>Planejado</span><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:3px;background:#2e3339"></span>Realizado</span></div></div>
+ <svg viewBox="0 0 400 195" width="100%" height="210" role="img" aria-label="Curva S: planejado 72% e realizado 64% em setembro"><g stroke="#eeeff1">${[20,57.5,95,132.5,170].map(y=>`<line x1="34" y1="${y}" x2="392" y2="${y}"/>`).join('')}</g>
+ <g font-size="10" fill="#6a7078" text-anchor="end">${[100,75,50,25,0].map((v,i)=>`<text x="28" y="${23+i*37.5}">${v}%</text>`).join('')}</g>
+ <g font-size="10" fill="#6a7078" text-anchor="middle">${'J F M A M J J A S O N D'.split(' ').map((m,i)=>`<text x="${40+i*32}" y="188">${m}</text>`).join('')}</g>
+ <polyline points="${pt(pl)}" fill="none" stroke="#8f959d" stroke-width="1.8" stroke-dasharray="5 4"/><polyline points="${pt(re)}" fill="none" stroke="#2e3339" stroke-width="2.6"/><circle cx="${40+8*32}" cy="${170-64*1.5}" r="4" fill="#2e3339"/></svg>
+ <div class="g3" style="gap:8px;border-top:1px solid #eeeff1;padding-top:12px;text-align:center"><div><div class="lc">Planejado (set)</div><b style="font-size:18px">72%</b></div><div><div class="lc">Realizado (set)</div><b style="font-size:18px;color:#2e3339">64%</b></div><div><div class="lc">Desvio</div><b style="font-size:18px;color:#a3221b">-8 p.p.</b></div></div></section>
+ <section class="card pad"><h2 style="margin-bottom:6px">Relatórios disponíveis</h2>${REL.map(r=>`<div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #eeeff1"><span class="kt" style="width:36px;height:36px;border-radius:9px;background:#eceef1;color:#2e3339">${svg(I.relatorios,18)}</span><span class="grow">${two(r[1],r[2])}</span><button class="btn ghost sm" data-do="${r[0]}x" data-msg="Relatório “${r[1]}” gerado em PDF">Gerar PDF</button></div>`).join('')}</section></div></div>`;
 }
 
 /* IA & Automações */
-const INS=[['i1','Risco de atraso — Galpão XPTO','Telhas termoacústicas em trânsito há 9 dias. Probabilidade de atraso de 3 semanas na cobertura: 74%.','#a3221b','Replanejar cronograma'],['i2','Economia possível em aço','Metalúrgica Paraná tem 5% de desconto no Marketplace para pedidos acima de 8 t. Economia estimada: R$ 2.900.','#1a6b3c','Aplicar desconto'],['i3','Previsão de custo — Plaza Corporate','No ritmo atual, a obra deve fechar 3,2% acima do orçamento em mão de obra.','#8a5800','Ver detalhes'],['i4','Documentos a vencer','5 documentos vencem nos próximos 15 dias. Posso solicitar a renovação de todos.','#2447b3','Solicitar renovações']];
+const INS=[['i1','Risco de atraso — Galpão XPTO','Telhas termoacústicas em trânsito há 9 dias. Probabilidade de atraso de 3 semanas na cobertura: 74%.','#a3221b','Replanejar cronograma'],['i2','Economia possível em aço','Metalúrgica Paraná tem 5% de desconto no Marketplace para pedidos acima de 8 t. Economia estimada: R$ 2.900.','#1a6b3c','Aplicar desconto'],['i3','Previsão de custo — Plaza Corporate','No ritmo atual, a obra deve fechar 3,2% acima do orçamento em mão de obra.','#8a5800','Ver detalhes'],['i4','Documentos a vencer','5 documentos vencem nos próximos 15 dias. Posso solicitar a renovação de todos.','#2e3339','Solicitar renovações']];
 const AUTO=[['a1','Aprovar automaticamente pedidos abaixo de R$ 5 mil','Compras'],['a2','Lembrete de contas 3 dias antes do vencimento','Financeiro'],['a3','Gerar relatório semanal para clientes toda sexta','Relatórios'],['a4','Alertar estoque abaixo do mínimo','Estoque'],['a5','Resumo diário do diário de obra por e-mail','Obras']];
 function ia(){
  return `<div class="stack">${ph('IA & Automações','Insights gerados a partir dos dados das obras')}
- <div class="g2">${INS.map(n=>`<div class="card eq" style="border-left:4px solid ${n[3]}"><div style="display:flex;gap:10px;align-items:center"><span style="color:${n[3]}">${svg(I.ia,20,2)}</span><b style="font-size:15px">${n[1]}</b></div><span style="font-size:14px;color:#3a465e">${n[2]}</span>
+ <div class="g2">${INS.map(n=>`<div class="card eq" style="border-left:4px solid ${n[3]}"><div style="display:flex;gap:10px;align-items:center"><span style="color:${n[3]}">${svg(I.ia,20,2)}</span><b style="font-size:15px">${n[1]}</b></div><span style="font-size:14px;color:#41464d">${n[2]}</span>
  ${S.done[n[0]]?`<span class="bd" style="background:#e3f5e9;color:#1a6b3c;align-self:flex-start">Ação aplicada</span>`:`<button class="btn sm" style="align-self:flex-start" data-do="${n[0]}" data-msg="Feito: ${n[4]}">${n[4]}</button>`}</div>`).join('')}</div>
- <section class="card pad"><h2 style="margin-bottom:6px">Automações</h2>${AUTO.map(a=>`<div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid #eef1f6"><span class="grow">${two(a[1],a[2])}</span><button class="sw ${S.auto[a[0]]?'on':''}" role="switch" aria-checked="${!!S.auto[a[0]]}" aria-label="${a[1]}" data-tog="${a[0]}"></button></div>`).join('')}</section></div>`;
+ <section class="card pad"><h2 style="margin-bottom:6px">Automações</h2>${AUTO.map(a=>`<div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid #eeeff1"><span class="grow">${two(a[1],a[2])}</span><button class="sw ${S.auto[a[0]]?'on':''}" role="switch" aria-checked="${!!S.auto[a[0]]}" aria-label="${a[1]}" data-tog="${a[0]}"></button></div>`).join('')}</section></div>`;
 }
 
 function other(){
  const n=NAV.find(x=>x[0]===S.screen)||NAV[0];
- return `<div class="stack"><h1>${n[1]}</h1><div class="card" style="border-style:dashed;border-color:#c9d1e0;padding:56px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center">
- <div style="width:56px;height:56px;border-radius:14px;background:#e6ecfd;color:#2f55c9;display:flex;align-items:center;justify-content:center">${svg(I[n[0]],26)}</div>
- <b style="font-size:16px">Módulo ${n[1]}</b><span style="font-size:14px;color:#3a465e;max-width:420px">Esta tela ainda não foi detalhada no protótipo. Os fluxos navegáveis são Dashboard, Obras, Planejamento, Financeiro e Compras.</span>
+ return `<div class="stack"><h1>${n[1]}</h1><div class="card" style="border-style:dashed;border-color:#cdd1d6;padding:56px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center">
+ <div style="width:56px;height:56px;border-radius:14px;background:#eceef1;color:#3d434b;display:flex;align-items:center;justify-content:center">${svg(I[n[0]],26)}</div>
+ <b style="font-size:16px">Módulo ${n[1]}</b><span style="font-size:14px;color:#41464d;max-width:420px">Esta tela ainda não foi detalhada no protótipo. Os fluxos navegáveis são Dashboard, Obras, Planejamento, Financeiro e Compras.</span>
  <button class="btn" data-go="dashboard" style="margin-top:6px">Voltar ao Dashboard</button></div></div>`;
 }
 
 function modal(){
  if(!S.modal)return '';
- return `<div class="overlay" data-act="close-bg"><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dt"><div class="hd"><h2 id="dt" style="font-size:18px;font-weight:700">Nova obra</h2><button class="ib" style="width:36px;height:36px;background:#f1f3f8" data-act="close" aria-label="Fechar">${svg('M6 6l12 12M18 6L6 18',16,2.2)}</button></div>
+ return `<div class="overlay" data-act="close-bg"><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dt"><div class="hd"><h2 id="dt" style="font-size:18px;font-weight:700">Nova obra</h2><button class="ib" style="width:36px;height:36px;background:#f1f2f4" data-act="close" aria-label="Fechar">${svg('M6 6l12 12M18 6L6 18',16,2.2)}</button></div>
  <label class="fld">Nome da obra<input id="fNome" placeholder="Ex.: Residencial Jardim das Flores"></label>
  <label class="fld">Localização<input id="fLocal" placeholder="Cidade - UF"></label>
  <label class="fld">Status inicial<select id="fStatus"><option>Planejamento</option><option>Em execução</option><option>Aguardando material</option></select></label>
@@ -479,7 +485,7 @@ app.addEventListener('click',e=>{
   const nome=document.getElementById('fNome').value.trim()||'Nova obra sem nome';
   const local=document.getElementById('fLocal').value.trim()||'Local a definir';
   const status=document.getElementById('fStatus').value;
-  S.obras.unshift({id:'n'+Date.now(),nome,local,status,prog:0,cor:'#2f5bd8',resp:'Carlos Mendes',inicio:'Out/26',prazo:'A definir',orc:'A definir',real:'R$ 0,00',equipe:0,gs:10,ge:12});
+  S.obras.unshift({id:'n'+Date.now(),nome,local,status,prog:0,cor:'#2e3339',resp:'Carlos Mendes',inicio:'Out/26',prazo:'A definir',orc:'A definir',real:'R$ 0,00',equipe:0,gs:10,ge:12});
   S.filter='Todas';S.q='';S.modal=false;go('obras');flash('Obra “'+nome+'” criada');
  }
 });
