@@ -188,7 +188,7 @@ function dash(){
  const at=[['JS','Juliana Silva','adicionou 12 fotos no diário de obra','Há 25 min · Vista do Sol'],['RA','Ricardo Alves','atualizou o cronograma','Há 1 h · Plaza Corporate'],['MP','Marcos Pereira','registrou recebimento de material','Há 2 h · Galpão XPTO'],['AR','Ana Ribeiro','concluiu a vistoria de segurança','Ontem · Escola Horizonte']];
  const al=[['Documentos vencendo','ARTs e licenças nos próximos 15 dias',docVenc(),['#fde4e2','#a3221b','#c93a31'],'documentos'],['Pedidos aguardando aprovação','Compras acima de R$ 20 mil',pendentes(),['#fdf1d8','#8a5800','#c77a0a'],'compras'],['Contas vencendo esta semana','Fornecedores e terceiros',abertas(),['#e2e8ee','#34506a','#2e3339'],'financeiro'],['Obra paralisada','Condomínio Recanto Verde',1,['#eceef0','#41464d','#6a7078'],'obras']];
  const tl=TASKS.filter(t=>!S.doneTasks[t[0]]).length;
- return `<div class="stack"><div><h1 style="font-size:26px">Bom dia, Carlos!</h1><p class="sub">Aqui está o resumo do que está acontecendo hoje.</p></div>
+ return `<div class="stack"><div><h1 style="font-size:26px">Bom dia, Neto!</h1><p class="sub">Aqui está o resumo do que está acontecendo hoje.</p></div>
  <div class="g4">${k.map(x=>`<button class="card kpi" data-go="${x[0]}">${x[1]}<span><span class="kl">${x[2]}</span><span class="kv">${x[3]}</span><span class="kd" style="color:${x[5]}">${x[4]}</span></span></button>`).join('')}</div>
  <div class="gdash">
   <section class="card" style="padding:18px 18px 8px"><div class="hd"><h2>Obras em andamento</h2><button class="lnk" data-go="obras">Ver todas</button></div>
