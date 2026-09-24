@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WA Engenharia — Gestão Inteligente de Obras (protótipo)</title>
+<title>L. A. N. Empreendimentos Imobiliários — Gestão de Obras (protótipo)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -17,11 +17,11 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
 #app{display:flex;height:100vh;overflow:hidden;position:relative}
 aside{width:224px;flex-shrink:0;background:var(--side);display:flex;flex-direction:column;transition:width .2s}
 aside.col{width:76px}
-.brand{display:flex;align-items:center;gap:12px;padding:18px 16px 16px;border-bottom:1px solid var(--sideLine)}
+.brand{display:flex;align-items:center;gap:10px;padding:16px 12px 14px;border-bottom:1px solid var(--sideLine)}
 .logo{width:40px;height:40px;flex-shrink:0;border-radius:10px;background:#3563e9;display:flex;align-items:center;justify-content:center}
 .brand .lbl{min-width:0;overflow:hidden}
-.brand b{display:block;font-size:15px;color:#fff;letter-spacing:.3px;white-space:nowrap}
-.brand small{font-size:11px;color:#a9b5d3;white-space:nowrap}
+.brand b{display:block;font-size:12px;line-height:1.3;color:#fff;letter-spacing:.1px}
+.brand small{display:block;margin-top:3px;font-size:10.5px;color:#a9b5d3;white-space:nowrap}
 nav{flex-grow:1;overflow-y:auto;padding:12px 10px;display:flex;flex-direction:column;gap:2px}
 .nv{display:flex;align-items:center;gap:12px;width:100%;min-height:40px;padding:0 12px;border:0;border-radius:8px;font-size:14px;text-align:left;background:transparent;color:#c3cde4;flex-shrink:0}
 .nv:hover{background:#1f3160}
@@ -160,7 +160,7 @@ let tt;const flash=m=>{set({toast:m});clearTimeout(tt);tt=setTimeout(()=>set({to
 function side(){
  const a=S.screen==='obra'?'obras':S.screen;
  return `<aside class="${S.collapsed?'col':''}">
- <div class="brand"><div class="logo">${svg(I.obras,22,2,'#fff')}</div><div class="lbl"><b>WA ENGENHARIA</b><small>Gestão Inteligente de Obras</small></div></div>
+ <div class="brand"><div class="logo" style="width:34px;height:34px">${svg(I.obras,19,2,'#fff')}</div><div class="lbl"><b>L. A. N. EMPREENDIMENTOS IMOBILIARIOS LTDA</b><small>CNPJ 18.060.502/0001-73</small></div></div>
  <nav aria-label="Menu principal">${NAV.map(([id,l])=>`<button class="nv ${a===id?'on':''}" data-go="${id}" title="${l}" aria-label="${l}">${svg(I[id])}<span class="lbl">${l}</span></button>`).join('')}</nav>
  <div class="user"><div class="av">CM</div><div class="lbl"><b>Carlos Mendes</b><small>Administrador</small></div></div></aside>`;
 }
