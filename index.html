@@ -91,13 +91,19 @@ h2{margin:0;font-size:16px;font-weight:600}
 .fld input,.fld select{height:42px;border:1px solid #d9dfea;border-radius:8px;padding:0 12px;font-size:14px;font-weight:400;background:#fff}
 .toast{position:fixed;right:24px;bottom:24px;background:var(--ink);color:#fff;border-radius:10px;padding:12px 16px;font-size:14px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(15,23,42,.3);z-index:20}
 .muted{color:var(--mut)}
-@media (max-width:1100px){.gdash{grid-template-columns:1fr 1fr}.gdash>:last-child{grid-column:1/-1}.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.sw{width:42px;height:24px;border-radius:12px;border:0;background:#c9d1e0;position:relative;flex-shrink:0;padding:0}
+.sw::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
+.sw.on{background:#2e9b5a}.sw.on::after{left:21px}
+.eq{display:flex;flex-direction:column;gap:12px;padding:18px}
+.star{color:#e0a21b;letter-spacing:1px}
+@media (max-width:1100px){.g3{grid-template-columns:repeat(2,minmax(0,1fr))}.gdash{grid-template-columns:1fr 1fr}.gdash>:last-child{grid-column:1/-1}.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:820px){
   aside{position:absolute;z-index:5;height:100%;transform:translateX(0);transition:transform .2s}
   aside.col{transform:translateX(-100%);width:224px}
   aside.col .lbl{display:inline}
   main{padding:16px}
-  .gdash,.g3,.gfin,.g4{grid-template-columns:1fr}
+  .gdash,.g3,.gfin,.g4,.g2{grid-template-columns:1fr}
   .kbd{display:none}
   .scroll-x{overflow-x:auto}
   .scroll-x>*{min-width:760px}
@@ -123,10 +129,14 @@ const I={
  marketplace:'M4 9l1-5h14l1 5M4 9h16v11H4zM9 20v-6h6v6',relatorios:'M5 20V10M10 20V4M15 20v-8M20 20v-5',ia:'M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z'};
 const NAV=[['dashboard','Dashboard'],['obras','Obras'],['planejamento','Planejamento'],['projetos','Projetos'],['orcamento','Orçamento'],['financeiro','Financeiro'],['compras','Compras'],['estoque','Estoque'],['equipamentos','Equipamentos'],['rh','RH'],['seguranca','Segurança do Trabalho'],['documentos','Documentos'],['contratos','Contratos'],['clientes','Clientes'],['fornecedores','Fornecedores'],['marketplace','Marketplace'],['relatorios','Relatórios'],['ia','IA & Automações']];
 const BUILD='M4 21V9l8-5 8 5v12M9 21v-5h6v5';
-const BADGE={'Em execução':['#e3f5e9','#1a6b3c'],'Planejamento':['#e6ecfd','#2447b3'],'Aguardando material':['#fdf1d8','#8a5800'],'Paralisada':['#fde4e2','#a3221b'],'Aguardando aprovação':['#fdf1d8','#8a5800'],'Aprovado':['#e6ecfd','#2447b3'],'Em trânsito':['#efe9fd','#5a3bb3'],'Entregue':['#e3f5e9','#1a6b3c']};
+const BADGE={'Em execução':['#e3f5e9','#1a6b3c'],'Planejamento':['#e6ecfd','#2447b3'],'Aguardando material':['#fdf1d8','#8a5800'],'Paralisada':['#fde4e2','#a3221b'],'Aguardando aprovação':['#fdf1d8','#8a5800'],'Aprovado':['#e6ecfd','#2447b3'],'Em trânsito':['#efe9fd','#5a3bb3'],'Entregue':['#e3f5e9','#1a6b3c'],
+ 'Em revisão':['#fdf1d8','#8a5800'],'Em elaboração':['#e6ecfd','#2447b3'],'Vigente':['#e3f5e9','#1a6b3c'],'Vencendo':['#fdf1d8','#8a5800'],'Vencido':['#fde4e2','#a3221b'],'Renovação solicitada':['#e6ecfd','#2447b3'],
+ 'Em operação':['#e3f5e9','#1a6b3c'],'Manutenção':['#fde4e2','#a3221b'],'Disponível':['#e6ecfd','#2447b3'],'Ativo':['#e3f5e9','#1a6b3c'],'Afastado':['#fde4e2','#a3221b'],'Férias':['#efe9fd','#5a3bb3'],
+ 'Homologado':['#e3f5e9','#1a6b3c'],'Em avaliação':['#fdf1d8','#8a5800'],'Conforme':['#e3f5e9','#1a6b3c'],'Não conforme':['#fde4e2','#a3221b'],'Pendente':['#fdf1d8','#8a5800'],'Resolvida':['#e3f5e9','#1a6b3c'],'Agendado':['#e3f5e9','#1a6b3c'],
+ 'Em medição':['#e6ecfd','#2447b3'],'Encerrado':['#eceff4','#3a465e'],'Suspenso':['#fde4e2','#a3221b'],'Abaixo do mínimo':['#fde4e2','#a3221b'],'Normal':['#e3f5e9','#1a6b3c'],'Atenção':['#fdf1d8','#8a5800'],'Compra solicitada':['#e6ecfd','#2447b3']};
 const bd=s=>{const c=BADGE[s]||['#eceff4','#3a465e'];return `<span class="bd" style="background:${c[0]};color:${c[1]}">${esc(s)}</span>`};
 
-const S={screen:'dashboard',obraId:'vista',tab:'resumo',collapsed:window.innerWidth<820,modal:false,filter:'Todas',q:'',toast:'',doneTasks:{},pagas:{},aprovados:{},
+const S={screen:'dashboard',obraId:'vista',tab:'resumo',collapsed:window.innerWidth<820,modal:false,filter:'Todas',q:'',toast:'',doneTasks:{},pagas:{},aprovados:{},done:{},sub:{},auto:{a1:true,a2:true,a3:false,a4:true,a5:false},cart:{},
  obras:[
  {id:'vista',nome:'Residencial Vista do Sol',local:'Praia Brava, Itajaí - SC',status:'Em execução',prog:72,cor:'#3f6fe0',resp:'Juliana Silva',inicio:'Fev/26',prazo:'Dez/26',orc:'R$ 2,40M',real:'R$ 1,62M',equipe:48,gs:2,ge:12},
  {id:'plaza',nome:'Edifício Plaza Corporate',local:'Centro, São Paulo - SP',status:'Em execução',prog:45,cor:'#6a5ae0',resp:'Ricardo Alves',inicio:'Mar/26',prazo:'Mar/27',orc:'R$ 3,10M',real:'R$ 1,31M',equipe:62,gs:3,ge:12},
@@ -170,7 +180,7 @@ function dash(){
   ['financeiro',kt('#fde4e2','#a3221b','M3 6h18v12H3zM3 10h18M7 15h4'),'Receitas no mês','R$ 1,25M','↑ 12% desde o mês passado','#1a6b3c']];
  const ag=[['08:00','Reunião de alinhamento','Residencial Vista do Sol','#2f5bd8'],['10:30','Visita técnica','Edifício Plaza Corporate','#2e9b5a'],['14:00','Reunião com fornecedor','Metalúrgica Paraná','#6a5ae0'],['16:00','Análise de orçamento','Shopping Park Sul','#d9892a']];
  const at=[['JS','Juliana Silva','adicionou 12 fotos no diário de obra','Há 25 min · Vista do Sol'],['RA','Ricardo Alves','atualizou o cronograma','Há 1 h · Plaza Corporate'],['MP','Marcos Pereira','registrou recebimento de material','Há 2 h · Galpão XPTO'],['AR','Ana Ribeiro','concluiu a vistoria de segurança','Ontem · Escola Horizonte']];
- const al=[['Documentos vencendo','ARTs e licenças nos próximos 15 dias',5,['#fde4e2','#a3221b','#c93a31'],'documentos'],['Pedidos aguardando aprovação','Compras acima de R$ 20 mil',pendentes(),['#fdf1d8','#8a5800','#c77a0a'],'compras'],['Contas vencendo esta semana','Fornecedores e terceiros',abertas(),['#e6ecfd','#2447b3','#2f5bd8'],'financeiro'],['Obra paralisada','Condomínio Recanto Verde',1,['#eceff4','#3a465e','#5f6b82'],'obras']];
+ const al=[['Documentos vencendo','ARTs e licenças nos próximos 15 dias',docVenc(),['#fde4e2','#a3221b','#c93a31'],'documentos'],['Pedidos aguardando aprovação','Compras acima de R$ 20 mil',pendentes(),['#fdf1d8','#8a5800','#c77a0a'],'compras'],['Contas vencendo esta semana','Fornecedores e terceiros',abertas(),['#e6ecfd','#2447b3','#2f5bd8'],'financeiro'],['Obra paralisada','Condomínio Recanto Verde',1,['#eceff4','#3a465e','#5f6b82'],'obras']];
  const tl=TASKS.filter(t=>!S.doneTasks[t[0]]).length;
  return `<div class="stack"><div><h1 style="font-size:26px">Bom dia, Carlos!</h1><p class="sub">Aqui está o resumo do que está acontecendo hoje.</p></div>
  <div class="g4">${k.map(x=>`<button class="card kpi" data-go="${x[0]}">${x[1]}<span><span class="kl">${x[2]}</span><span class="kv">${x[3]}</span><span class="kd" style="color:${x[5]}">${x[4]}</span></span></button>`).join('')}</div>
@@ -256,6 +266,170 @@ function compras(){
  ${PED.map(p=>{const st=pedStatus(p);return `<div class="tbl-r cols-ped" style="padding:12px 20px"><b style="color:#3a465e">${p[0]}</b><span><b style="display:block">${p[1]}</b><span class="lc">${p[2]}</span></span><span>${p[3]}</span><span>${p[4]}</span><b>${p[5]}</b><span style="display:flex;align-items:center;gap:8px">${bd(st)}${st==='Aguardando aprovação'?`<button class="btn sm" data-aprovar="${p[0]}">Aprovar</button>`:''}</span></div>`}).join('')}</div></div></div>`;
 }
 
+/* ---------- Telas dos demais módulos ---------- */
+const ph=(t,s,btn='')=>`<div class="hd" style="align-items:flex-end;gap:12px;flex-wrap:wrap"><div><h1>${t}</h1><p class="sub">${s}</p></div>${btn}</div>`;
+const kc4=a=>`<div class="g4">${a.map(k=>`<div class="card" style="padding:16px 18px"><div class="kl">${k[0]}</div><b style="font-size:22px;color:${k[2]||'#172036'}">${k[1]}</b>${k[3]?`<div class="kd muted" style="margin-top:2px">${k[3]}</div>`:''}</div>`).join('')}</div>`;
+const tbl=(cols,hs,rows,empty)=>`<div class="card scroll-x" style="overflow:hidden"><div><div class="tbl-h" style="grid-template-columns:${cols}">${hs.map(h=>`<span>${h}</span>`).join('')}</div>${rows.map(r=>`<div class="tbl-r" style="grid-template-columns:${cols};padding:12px 20px">${r.map(c=>`<span style="min-width:0">${c}</span>`).join('')}</div>`).join('')}${rows.length?'':`<div style="padding:40px;text-align:center" class="muted">${empty||'Nenhum registro encontrado.'}</div>`}</div></div>`;
+const two=(a,b)=>`<b style="display:block;font-size:14px;overflow:hidden;text-overflow:ellipsis">${a}</b><span class="lc">${b}</span>`;
+const sub=(k,d)=>S.sub[k]||d;
+const chips=(k,opts)=>`<div style="display:flex;gap:8px;flex-wrap:wrap">${opts.map(f=>`<button class="chip ${sub(k,opts[0])===f?'on':''}" data-sub="${k}|${f}">${f}</button>`).join('')}</div>`;
+const flat=h=>h.replace('class="card scroll-x"','class="scroll-x"');
+const tabs=(k,opts)=>`<div class="tabs" role="tablist">${opts.map(t=>`<button role="tab" aria-selected="${sub(k,opts[0])===t}" class="tab ${sub(k,opts[0])===t?'on':''}" data-sub="${k}|${t}">${t}</button>`).join('')}</div>`;
+const act=(key,label,msg)=>`<button class="btn sm" data-do="${key}" data-msg="${esc(msg)}">${label}</button>`;
+const plusBtn=(key,label,msg)=>`<button class="btn" data-do="${key}" data-msg="${esc(msg)}">${svg('M12 5v14M5 12h14',16,2.2)}${label}</button>`;
+const bar=(v,c)=>`<span style="display:flex;align-items:center;gap:8px"><span class="bar"><span style="width:${Math.min(100,v)}%;background:${c}"></span></span><b style="width:38px;font-size:13px">${v}%</b></span>`;
+const stars=n=>`<span class="star" aria-label="${n} de 5">${'★'.repeat(Math.round(n))}<span style="color:#d9dfea">${'★'.repeat(5-Math.round(n))}</span></span> <b style="font-size:13px">${n.toFixed(1).replace('.',',')}</b>`;
+const money=m=>m>=1?'R$ '+m.toFixed(2).replace('.',',')+'M':'R$ '+Math.round(m*1000)+' mil';
+
+/* Projetos */
+const PROJ=[['pj1','Arquitetônico executivo','Vista do Sol','R07','Estúdio Linha','Aprovado'],['pj2','Estrutural — torre','Plaza Corporate','R04','Calc Engenharia','Em revisão'],['pj3','Elétrico e SPDA','Vista do Sol','R03','EletroProj','Em revisão'],['pj4','Hidrossanitário','Escola Horizonte','R05','HidroTec','Aprovado'],['pj5','Climatização (HVAC)','Shopping Park Sul','R01','ClimaPro','Em elaboração'],['pj6','Fundações','Shopping Park Sul','R02','Calc Engenharia','Em revisão'],['pj7','Prevenção de incêndio (PPCI)','Galpão XPTO','R03','FireSafe','Aprovado'],['pj8','Arquitetônico — layout','Clínica Santa Luzia','R06','Estúdio Linha','Aprovado']];
+const CLASH=[['Viga V-212 x duto de ar-condicionado','Plaza Corporate','Estrutural x HVAC','Alta'],['Shaft hidráulico sem furo na laje L8','Vista do Sol','Hidráulico x Estrutural','Média'],['Eletrocalha cruzando sprinkler','Galpão XPTO','Elétrico x PPCI','Baixa']];
+function projetos(){
+ const st=p=>S.done[p[0]]?'Aprovado':p[5];
+ const t=sub('proj','Projetos');
+ const body=t==='Projetos'?flat(tbl('2fr 1.3fr .6fr 1.3fr 1.5fr',['Projeto','Obra','Revisão','Projetista','Status'],PROJ.map(p=>[`<b>${p[1]}</b>`,p[2],`<span class="lc" style="font-weight:600">${p[3]}</span>`,p[4],`<span style="display:flex;gap:8px;align-items:center">${bd(st(p))}${st(p)==='Em revisão'?act(p[0],'Aprovar','Projeto “'+p[1]+'” aprovado'):''}</span>`])))
+ :`<div class="pad stack" style="gap:0"><h2 style="margin-bottom:8px">Interferências detectadas na compatibilização (BIM)</h2>${CLASH.map((c,i)=>{const ok=S.done['cl'+i];const pr=PRIO[c[3]];return `<div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid #eef1f6;flex-wrap:wrap"><span class="grow">${two(c[0],c[1]+' · '+c[2])}</span><span class="bd" style="background:${pr[0]};color:${pr[1]}">${c[3]}</span>${ok?bd('Resolvida'):act('cl'+i,'Marcar resolvida','Interferência resolvida')}</div>`}).join('')}</div>`;
+ return `<div class="stack">${ph('Projetos','Gestão de projetos e compatibilização',plusBtn('pjnovo','Novo projeto','Projeto cadastrado (protótipo)'))}
+ ${kc4([['Projetos ativos',PROJ.length],['Em revisão',PROJ.filter(p=>st(p)==='Em revisão').length,'#8a5800'],['Aprovados',PROJ.filter(p=>st(p)==='Aprovado').length,'#1a6b3c'],['Interferências abertas',CLASH.filter((c,i)=>!S.done['cl'+i]).length,'#a3221b']])}
+ <div class="card" style="overflow:hidden">${tabs('proj',['Projetos','Compatibilização'])}${body}</div></div>`;
+}
+
+/* Orçamento */
+const COMP=[['Estrutura de concreto','m³',.24],['Alvenaria e vedações','m²',.12],['Revestimentos','m²',.11],['Instalações elétricas','vb',.10],['Instalações hidrossanitárias','vb',.09],['Esquadrias','un',.08],['Mão de obra indireta','mês',.08],['Canteiro e administração local','mês',.07],['Cobertura','m²',.06],['Pintura','m²',.05]];
+function orcamento(){
+ const o=S.obras.find(x=>x.id===sub('orc','vista'))||S.obras[0];
+ const v=parseFloat(String(o.orc).replace('R$ ','').replace('M','').replace(',','.'));
+ const sel=`<div style="display:flex;gap:8px;flex-wrap:wrap">${S.obras.map(x=>`<button class="chip ${x.id===o.id?'on':''}" data-sub="orc|${x.id}">${esc(x.nome)}</button>`).join('')}</div>`;
+ if(isNaN(v))return `<div class="stack">${ph('Orçamento','Composição de custos por obra')}${sel}<div class="card pad muted" style="text-align:center;padding:40px">Esta obra ainda não tem orçamento. <button class="lnk" data-do="orc${o.id}" data-msg="Orçamento iniciado para ${esc(o.nome)}">Iniciar orçamento</button></div></div>`;
+ const cd=v/1.25;let acc=0;
+ const rows=COMP.map(c=>{acc+=c[2];const cls=acc<=.5?'A':acc<=.8?'B':'C';const cc={A:['#fde4e2','#a3221b'],B:['#fdf1d8','#8a5800'],C:['#eceff4','#3a465e']}[cls];return [`<b>${c[0]}</b>`,c[1],`<b>${money(cd*c[2])}</b>`,bar(Math.round(c[2]*100),o.cor),`<span class="bd" style="background:${cc[0]};color:${cc[1]}">Classe ${cls}</span>`]});
+ return `<div class="stack">${ph('Orçamento','Composição de custos e curva ABC — '+esc(o.nome),`<button class="btn ghost" data-do="orcx" data-msg="Planilha orçamentária exportada (protótipo)">Exportar planilha</button>`)}${sel}
+ ${kc4([['Custo direto',money(cd)],['BDI','25,0%'],['Preço de venda',money(v),'#2447b3'],['Realizado até hoje',esc(o.real),'#1a6b3c']])}
+ ${tbl('2.2fr .6fr 1fr 1.6fr 1fr',['Serviço','Unid.','Custo','Participação','Curva ABC'],rows)}</div>`;
+}
+
+/* Estoque */
+const EST=[['e1','Cimento CP-II 50kg','Vista do Sol',120,300,'sc'],['e2','Aço CA-50 10mm','Plaza Corporate',6.2,4,'t'],['e3','Areia média','Vista do Sol',45,30,'m³'],['e4','Bloco cerâmico 14x19','Escola Horizonte',1800,5000,'un'],['e5','Argamassa AC-III','Clínica Santa Luzia',210,150,'sc'],['e6','Cabo flexível 2,5mm','Clínica Santa Luzia',800,1000,'m'],['e7','Tubo PVC 100mm','Galpão XPTO',64,40,'br'],['e8','Brita 1','Plaza Corporate',22,25,'m³']];
+function estoque(){
+ const nv=e=>e[3]<e[4]?(e[3]<e[4]*.6?'Abaixo do mínimo':'Atenção'):'Normal';
+ const f=sub('est','Todos');const list=EST.filter(e=>f==='Todos'||nv(e)!=='Normal');
+ const fmt=n=>String(n).replace('.',',');
+ return `<div class="stack">${ph('Estoque','Almoxarifados das obras',plusBtn('estmov','Registrar movimentação','Movimentação registrada (protótipo)'))}
+ ${kc4([['Itens controlados','312'],['Valor em estoque','R$ 486 mil'],['Abaixo do mínimo',EST.filter(e=>nv(e)==='Abaixo do mínimo').length,'#a3221b'],['Movimentações hoje','27']])}
+ ${chips('est',['Todos','Precisa repor'])}
+ ${tbl('2fr 1.3fr 1fr 1fr 1.2fr 1.3fr',['Material','Obra','Saldo','Mínimo','Situação',''],list.map(e=>[`<b>${e[1]}</b>`,e[2],`<b>${fmt(e[3])} ${e[5]}</b>`,`${fmt(e[4])} ${e[5]}`,bd(S.done[e[0]]?'Compra solicitada':nv(e)),nv(e)!=='Normal'&&!S.done[e[0]]?act(e[0],'Solicitar compra','Solicitação de compra criada: '+e[1]):'']))}</div>`;
+}
+
+/* Equipamentos */
+const EQP=[['q1','Grua torre GT-45','Plaza Corporate','Em operação','3.412 h','12/10'],['q2','Betoneira 400L','Vista do Sol','Em operação','1.208 h','30/09'],['q3','Retroescavadeira JCB 3C','Shopping Park Sul','Manutenção','5.870 h','Em oficina'],['q4','Elevador cremalheira','Vista do Sol','Em operação','2.044 h','05/10'],['q5','Compactador de solo','Galpão XPTO','Disponível','860 h','18/11'],['q6','Plataforma elevatória','Clínica Santa Luzia','Em operação','1.530 h','27/09']];
+function equipamentos(){
+ const cnt=s=>EQP.filter(e=>e[3]===s).length;
+ return `<div class="stack">${ph('Equipamentos','Frota própria e locada',plusBtn('eqnovo','Novo equipamento','Equipamento cadastrado (protótipo)'))}
+ ${kc4([['Equipamentos',EQP.length],['Em operação',cnt('Em operação'),'#1a6b3c'],['Em manutenção',cnt('Manutenção'),'#a3221b'],['Disponíveis',cnt('Disponível'),'#2447b3']])}
+ <div class="g3">${EQP.map(e=>`<div class="card eq"><div class="hd" style="gap:10px;align-items:flex-start"><span class="kt" style="width:42px;height:42px;background:#e6ecfd;color:#2447b3">${svg(I.equipamentos,20)}</span><span class="grow">${two(e[1],e[2])}</span>${bd(e[3])}</div>
+ <div style="display:flex;justify-content:space-between;font-size:13px;border-top:1px solid #eef1f6;padding-top:10px"><span class="muted">Horímetro</span><b>${e[4]}</b></div><div style="display:flex;justify-content:space-between;font-size:13px"><span class="muted">Próxima manutenção</span><b>${S.done[e[0]]?'Agendada':e[5]}</b></div>
+ ${S.done[e[0]]?`<span class="bd" style="background:#e3f5e9;color:#1a6b3c;align-self:flex-start">Manutenção agendada</span>`:`<button class="btn ghost sm" style="align-self:flex-start" data-do="${e[0]}" data-msg="Manutenção agendada: ${e[1]}">Agendar manutenção</button>`}</div>`).join('')}</div></div>`;
+}
+
+/* RH */
+const COLAB=[['Juliana Silva','Engenheira civil','Vista do Sol','03/2021','Ativo'],['Ricardo Alves','Engenheiro de planejamento','Plaza Corporate','08/2019','Ativo'],['Marcos Pereira','Mestre de obras','Galpão XPTO','01/2018','Ativo'],['Ana Ribeiro','Técnica de segurança','Escola Horizonte','06/2022','Férias'],['Paulo Nunes','Engenheiro civil','Clínica Santa Luzia','11/2020','Ativo'],['Fernanda Costa','Arquiteta','Shopping Park Sul','02/2023','Ativo'],['José Santos','Pedreiro','Vista do Sol','04/2024','Afastado'],['Luana Martins','Almoxarife','Plaza Corporate','09/2022','Ativo']];
+function rh(){
+ const t=sub('rh','Equipe');
+ const body=t==='Equipe'?flat(tbl('1.8fr 1.8fr 1.4fr 1fr 1fr',['Colaborador','Função','Obra','Admissão','Status'],COLAB.map(c=>[`<span style="display:flex;align-items:center;gap:10px"><span class="av" style="width:32px;height:32px;font-size:11px;background:#e6ecfd;color:#2f55c9">${c[0].split(' ').map(x=>x[0]).join('')}</span><b>${c[0]}</b></span>`,c[1],c[2],c[3],bd(c[4])])))
+ :`<div class="pad stack" style="gap:14px"><h2>Presença em campo hoje</h2>${S.obras.filter(o=>o.equipe>0).map(o=>{const p=Math.round(o.equipe*.92);const pc=Math.round(p/o.equipe*100);return `<div style="display:grid;grid-template-columns:minmax(0,1.3fr) 1fr 60px;gap:12px;align-items:center;font-size:14px"><span class="nm">${esc(o.nome)}</span><span class="bar" style="height:10px"><span style="width:${pc}%;background:${o.cor}"></span></span><b style="text-align:right">${p}/${o.equipe}</b></div>`}).join('')}</div>`;
+ return `<div class="stack">${ph('RH','Pessoas, ponto e alocação por obra',plusBtn('rhnovo','Nova admissão','Admissão iniciada (protótipo)'))}
+ ${kc4([['Colaboradores','188'],['Em campo hoje','173','#1a6b3c'],['Afastados / férias','9','#8a5800'],['Horas extras no mês','1.246 h','#2447b3']])}
+ <div class="card" style="overflow:hidden">${tabs('rh',['Equipe','Presença'])}${body}</div></div>`;
+}
+
+/* Segurança do Trabalho */
+const INSP=[['Vistoria de andaimes','Vista do Sol','23/09','Conforme'],['Guarda-corpos pav. 6 e 7','Escola Horizonte','20/09','Conforme'],['Uso de cinto em altura','Plaza Corporate','19/09','Não conforme'],['Extintores e sinalização','Galpão XPTO','18/09','Pendente'],['Instalações elétricas provisórias','Clínica Santa Luzia','16/09','Conforme']];
+const TREIN=[['s1','NR-35 Trabalho em altura','14 colaboradores','vence em 8 dias'],['s2','NR-18 Integração','6 colaboradores','vence em 12 dias'],['s3','NR-10 Eletricidade','3 colaboradores','vence em 20 dias']];
+function seguranca(){
+ const dds=S.done.dds?22:21;
+ return `<div class="stack">${ph('Segurança do Trabalho','Inspeções, treinamentos e indicadores',S.done.dds?'':plusBtn('dds','Registrar DDS','DDS registrado para hoje'))}
+ ${kc4([['Dias sem acidentes','214','#1a6b3c'],['DDS no mês',dds],['Não conformidades abertas',INSP.filter(i=>i[3]!=='Conforme').length,'#a3221b'],['EPIs a vencer (30 dias)','37','#8a5800']])}
+ <div class="gfin"><section class="card pad"><h2 style="margin-bottom:6px">Inspeções recentes</h2>${INSP.map(i=>`<div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #eef1f6"><span class="grow">${two(i[0],i[1]+' · '+i[2])}</span>${bd(i[3])}</div>`).join('')}</section>
+ <section class="card pad"><h2 style="margin-bottom:6px">Treinamentos NR a vencer</h2>${TREIN.map(t=>`<div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #eef1f6;flex-wrap:wrap"><span class="grow">${two(t[1],t[2]+' · '+t[3])}</span>${S.done[t[0]]?bd('Agendado'):act(t[0],'Agendar turma','Turma agendada: '+t[1])}</div>`).join('')}</section></div></div>`;
+}
+
+/* Documentos */
+const DOCS=[['d1','ART de execução','ART','Vista do Sol','02/10/26','Vencendo'],['d2','Alvará de construção','Alvará','Plaza Corporate','05/10/26','Vencendo'],['d3','Licença ambiental de instalação','Licença','Shopping Park Sul','30/09/26','Vencendo'],['d4','ART de projeto estrutural','ART','Galpão XPTO','08/10/26','Vencendo'],['d5','AVCB provisório','Licença','Clínica Santa Luzia','04/10/26','Vencendo'],['d6','Alvará de construção','Alvará','Vista do Sol','15/03/27','Vigente'],['d7','PGR — Programa de Gerenciamento de Riscos','Segurança','Escola Horizonte','10/01/27','Vigente'],['d8','Licença de supressão vegetal','Licença','Recanto Verde','12/09/26','Vencido'],['d9','PCMSO','Segurança','Todas as obras','20/02/27','Vigente']];
+const docSt=d=>S.done[d[0]]?'Renovação solicitada':d[5];
+const docVenc=()=>DOCS.filter(d=>docSt(d)==='Vencendo').length;
+function documentos(){
+ const f=sub('doc','Todos');const q=S.q.toLowerCase();
+ const list=DOCS.filter(d=>(f==='Todos'||d[2]===f||(f==='Vencendo'&&docSt(d)==='Vencendo')));
+ return `<div class="stack">${ph('Documentos','ARTs, alvarás, licenças e documentos de segurança',plusBtn('docup','Enviar documento','Documento enviado (protótipo)'))}
+ ${kc4([['Documentos','142'],['Vencendo em 15 dias',docVenc(),'#8a5800'],['Vencidos',DOCS.filter(d=>docSt(d)==='Vencido').length,'#a3221b'],['Renovações em andamento',DOCS.filter(d=>S.done[d[0]]).length,'#2447b3']])}
+ ${chips('doc',['Todos','Vencendo','ART','Alvará','Licença','Segurança'])}
+ ${tbl('2.4fr 1fr 1.4fr 1fr 1.8fr',['Documento','Tipo','Obra','Validade','Status'],list.map(d=>[`<b>${d[1]}</b>`,d[2],d[3],d[4],`<span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${bd(docSt(d))}${(d[5]!=='Vigente'&&!S.done[d[0]])?act(d[0],'Renovar','Renovação solicitada: '+d[1]):''}</span>`]))}</div>`;
+}
+
+/* Contratos */
+const CTR=[['CT-2026-014','Construtora Litoral SPE','Cliente','Vista do Sol','R$ 2,40M',68,'Em medição'],['CT-2026-018','Plaza Empreendimentos','Cliente','Plaza Corporate','R$ 3,10M',42,'Em medição'],['CT-2026-021','Park Sul Participações','Cliente','Shopping Park Sul','R$ 1,20M',10,'Vigente'],['CT-2026-009','Prefeitura de Belo Horizonte','Cliente','Escola Horizonte','R$ 0,77M',58,'Em medição'],['EM-2026-033','Alvenaria Forte Ltda','Empreiteiro','Escola Horizonte','R$ 0,21M',64,'Em medição'],['EM-2026-027','Fundações Brasil','Empreiteiro','Shopping Park Sul','R$ 0,34M',0,'Vigente'],['CT-2026-011','Recanto Verde Incorporadora','Cliente','Recanto Verde','R$ 1,85M',36,'Suspenso'],['EM-2025-102','Pinturas Arco-Íris','Empreiteiro','Clínica Santa Luzia','R$ 0,06M',100,'Encerrado']];
+function contratos(){
+ const f=sub('ctr','Todos');const list=CTR.filter(c=>f==='Todos'||c[2]+'s'===f);
+ return `<div class="stack">${ph('Contratos','Contratos com clientes e empreiteiros',plusBtn('ctnovo','Novo contrato','Contrato criado (protótipo)'))}
+ ${kc4([['Valor contratado','R$ 9,93M'],['Medido','R$ 5,02M','#1a6b3c'],['A medir','R$ 4,91M','#2447b3'],['Aditivos no ano','4','#8a5800']])}
+ ${chips('ctr',['Todos','Clientes','Empreiteiros'])}
+ ${tbl('1.1fr 2fr 1.3fr 1fr 1.4fr 1.6fr',['Contrato','Contratante / contratado','Obra','Valor','Medido','Status'],list.map(c=>[`<b style="color:#3a465e">${c[0]}</b>`,two(c[1],c[2]),c[3],`<b>${c[4]}</b>`,bar(c[5],'#2f5bd8'),`<span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${bd(c[6])}${c[6]==='Em medição'&&!S.done[c[0]]?act(c[0],'Aprovar medição','Medição aprovada: '+c[0]):''}</span>`]))}</div>`;
+}
+
+/* Clientes */
+const CLI=[['Construtora Litoral SPE','Marina Duarte','(47) 99812-4410','Vista do Sol','R$ 2,40M',9.2],['Plaza Empreendimentos','Roberto Faria','(11) 98450-2231','Plaza Corporate','R$ 3,10M',8.4],['Park Sul Participações','Cláudia Menezes','(51) 99620-7788','Shopping Park Sul','R$ 1,20M',8.9],['Prefeitura de Belo Horizonte','Secretaria de Obras','(31) 3277-4000','Escola Horizonte','R$ 0,77M',7.8],['Grupo Santa Luzia Saúde','Dr. Henrique Lopes','(19) 99301-5566','Clínica Santa Luzia','R$ 0,58M',9.5],['XPTO Logística','Paula Andrade','(11) 97788-1200','Galpão XPTO','R$ 0,95M',7.1]];
+function clientes(){
+ return `<div class="stack">${ph('Clientes','Carteira de clientes e satisfação',plusBtn('clnovo','Novo cliente','Cliente cadastrado (protótipo)'))}
+ ${kc4([['Clientes ativos',CLI.length],['Receita contratada','R$ 9,00M','#2447b3'],['Satisfação média','8,5 / 10','#1a6b3c'],['Propostas em aberto','3','#8a5800']])}
+ <div class="g3">${CLI.map((c,i)=>`<div class="card eq"><div style="display:flex;gap:12px;align-items:center"><span class="av" style="background:#e6ecfd;color:#2f55c9">${c[0].split(' ').filter(w=>w.length>2).slice(0,2).map(w=>w[0]).join('')}</span><span class="grow">${two(c[0],c[1])}</span></div>
+ <div style="display:flex;justify-content:space-between;font-size:13px;border-top:1px solid #eef1f6;padding-top:10px"><span class="muted">Obra</span><b>${c[3]}</b></div><div style="display:flex;justify-content:space-between;font-size:13px"><span class="muted">Contrato</span><b>${c[4]}</b></div><div style="display:flex;justify-content:space-between;font-size:13px"><span class="muted">Satisfação</span><b style="color:${c[5]>=8.5?'#1a6b3c':c[5]>=7.5?'#8a5800':'#a3221b'}">${String(c[5]).replace('.',',')}</b></div>
+ <div style="display:flex;gap:8px"><button class="btn ghost sm" data-do="cl-rel${i}" data-msg="Relatório enviado a ${esc(c[0])}">Enviar relatório</button><span class="lc" style="align-self:center">${c[2]}</span></div></div>`).join('')}</div></div>`;
+}
+
+/* Fornecedores */
+const FORN=[['f1','Cimentos Sul Ltda','Cimento e argamassas',4.6,'3 dias',42,'Homologado'],['f2','Metalúrgica Paraná','Aço e ferragens',4.3,'5 dias',18,'Homologado'],['f3','Cerâmica Horizonte','Blocos e revestimentos',4.1,'7 dias',25,'Homologado'],['f4','CobreBem Telhas','Coberturas',3.8,'12 dias',6,'Em avaliação'],['f5','EletroForte','Materiais elétricos',4.7,'2 dias',31,'Homologado'],['f6','Areal Rio Claro','Agregados',4.4,'1 dia',57,'Homologado'],['f7','ClimaPro','Climatização',0,'—',0,'Em avaliação']];
+function fornecedores(){
+ const st=f=>S.done[f[0]]?'Homologado':f[6];
+ return `<div class="stack">${ph('Fornecedores','Cadastro, homologação e desempenho',plusBtn('fnovo','Novo fornecedor','Fornecedor cadastrado (protótipo)'))}
+ ${kc4([['Fornecedores',FORN.length],['Homologados',FORN.filter(f=>st(f)==='Homologado').length,'#1a6b3c'],['Em avaliação',FORN.filter(f=>st(f)==='Em avaliação').length,'#8a5800'],['Compras no ano','R$ 4,18M','#2447b3']])}
+ ${tbl('2fr 1.6fr 1.3fr .9fr .8fr 1.6fr',['Fornecedor','Categoria','Avaliação','Prazo médio','Pedidos','Status'],FORN.map(f=>[`<b>${f[1]}</b>`,f[2],f[3]?stars(f[3]):'<span class="lc">Sem histórico</span>',f[4],f[5],`<span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${bd(st(f))}${st(f)==='Em avaliação'?act(f[0],'Homologar',f[1]+' homologado'):''}</span>`]))}</div>`;
+}
+
+/* Marketplace */
+const MKT=[['m1','Cimento CP-II 50kg','Cimentos Sul Ltda','R$ 41,90','sc','2 dias',8],['m2','Aço CA-50 10mm (barra 12m)','Metalúrgica Paraná','R$ 52,30','br','4 dias',5],['m3','Bloco cerâmico 14x19x39','Cerâmica Horizonte','R$ 1,32','un','5 dias',12],['m4','Argamassa AC-III 20kg','Cimentos Sul Ltda','R$ 28,50','sc','2 dias',0],['m5','Cabo flexível 2,5mm (100m)','EletroForte','R$ 189,00','rl','1 dia',10],['m6','Tubo PVC esgoto 100mm','HidroMais','R$ 64,90','br','3 dias',6]];
+function marketplace(){
+ const n=Object.keys(S.cart).length;
+ return `<div class="stack">${ph('Marketplace','Compre de fornecedores homologados com preço negociado',`<button class="btn" data-cart="enviar" ${n?'':'disabled style="opacity:.5;cursor:not-allowed"'}>${svg(I.compras,16,2)}Enviar cotação (${n})</button>`)}
+ <div class="g3">${MKT.map(m=>{const on=S.cart[m[0]];return `<div class="card eq"><div style="height:90px;border-radius:10px;background:#f1f4fa;display:flex;align-items:center;justify-content:center;color:#8c96a8">${svg(I.estoque,34,1.6)}</div>
+ <div>${two(m[1],m[2])}</div><div style="display:flex;align-items:baseline;gap:6px"><b style="font-size:20px">${m[3]}</b><span class="lc">/ ${m[4]}</span>${m[6]?`<span class="bd" style="background:#e3f5e9;color:#1a6b3c;margin-left:auto">-${m[6]}%</span>`:''}</div><span class="lc">Entrega em ${m[5]}</span>
+ <button class="btn ${on?'ghost':''} sm" data-cart="${m[0]}">${on?'✓ Na cotação — remover':'Adicionar à cotação'}</button></div>`}).join('')}</div></div>`;
+}
+
+/* Relatórios */
+const REL=[['r1','Físico-financeiro consolidado','Todas as obras · mensal'],['r2','Curva S por obra','Planejado x realizado'],['r3','Medições do mês','Clientes e empreiteiros'],['r4','Produtividade das equipes','Horas x produção'],['r5','Posição de estoque','Por almoxarifado'],['r6','Indicadores de segurança','Taxa de frequência e gravidade']];
+function relatorios(){
+ const pl=[2,6,12,20,30,41,52,62,72,81,90,100],re=[2,5,10,17,26,36,46,55,64];
+ const pt=a=>a.map((v,i)=>`${40+i*32},${170-v*1.5}`).join(' ');
+ return `<div class="stack">${ph('Relatórios','Relatórios gerenciais e indicadores')}
+ <div class="gfin"><section class="card pad stack" style="gap:10px"><div class="hd"><h2>Curva S — carteira 2026</h2><div style="display:flex;gap:12px;font-size:12px;color:#3a465e"><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;border-top:2px dashed #8c96a8"></span>Planejado</span><span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:3px;background:#2f5bd8"></span>Realizado</span></div></div>
+ <svg viewBox="0 0 400 195" width="100%" height="210" role="img" aria-label="Curva S: planejado 72% e realizado 64% em setembro"><g stroke="#eef1f6">${[20,57.5,95,132.5,170].map(y=>`<line x1="34" y1="${y}" x2="392" y2="${y}"/>`).join('')}</g>
+ <g font-size="10" fill="#5f6b82" text-anchor="end">${[100,75,50,25,0].map((v,i)=>`<text x="28" y="${23+i*37.5}">${v}%</text>`).join('')}</g>
+ <g font-size="10" fill="#5f6b82" text-anchor="middle">${'J F M A M J J A S O N D'.split(' ').map((m,i)=>`<text x="${40+i*32}" y="188">${m}</text>`).join('')}</g>
+ <polyline points="${pt(pl)}" fill="none" stroke="#8c96a8" stroke-width="1.8" stroke-dasharray="5 4"/><polyline points="${pt(re)}" fill="none" stroke="#2f5bd8" stroke-width="2.6"/><circle cx="${40+8*32}" cy="${170-64*1.5}" r="4" fill="#2f5bd8"/></svg>
+ <div class="g3" style="gap:8px;border-top:1px solid #eef1f6;padding-top:12px;text-align:center"><div><div class="lc">Planejado (set)</div><b style="font-size:18px">72%</b></div><div><div class="lc">Realizado (set)</div><b style="font-size:18px;color:#2447b3">64%</b></div><div><div class="lc">Desvio</div><b style="font-size:18px;color:#a3221b">-8 p.p.</b></div></div></section>
+ <section class="card pad"><h2 style="margin-bottom:6px">Relatórios disponíveis</h2>${REL.map(r=>`<div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #eef1f6"><span class="kt" style="width:36px;height:36px;border-radius:9px;background:#e6ecfd;color:#2447b3">${svg(I.relatorios,18)}</span><span class="grow">${two(r[1],r[2])}</span><button class="btn ghost sm" data-do="${r[0]}x" data-msg="Relatório “${r[1]}” gerado em PDF">Gerar PDF</button></div>`).join('')}</section></div></div>`;
+}
+
+/* IA & Automações */
+const INS=[['i1','Risco de atraso — Galpão XPTO','Telhas termoacústicas em trânsito há 9 dias. Probabilidade de atraso de 3 semanas na cobertura: 74%.','#a3221b','Replanejar cronograma'],['i2','Economia possível em aço','Metalúrgica Paraná tem 5% de desconto no Marketplace para pedidos acima de 8 t. Economia estimada: R$ 2.900.','#1a6b3c','Aplicar desconto'],['i3','Previsão de custo — Plaza Corporate','No ritmo atual, a obra deve fechar 3,2% acima do orçamento em mão de obra.','#8a5800','Ver detalhes'],['i4','Documentos a vencer','5 documentos vencem nos próximos 15 dias. Posso solicitar a renovação de todos.','#2447b3','Solicitar renovações']];
+const AUTO=[['a1','Aprovar automaticamente pedidos abaixo de R$ 5 mil','Compras'],['a2','Lembrete de contas 3 dias antes do vencimento','Financeiro'],['a3','Gerar relatório semanal para clientes toda sexta','Relatórios'],['a4','Alertar estoque abaixo do mínimo','Estoque'],['a5','Resumo diário do diário de obra por e-mail','Obras']];
+function ia(){
+ return `<div class="stack">${ph('IA & Automações','Insights gerados a partir dos dados das obras')}
+ <div class="g2">${INS.map(n=>`<div class="card eq" style="border-left:4px solid ${n[3]}"><div style="display:flex;gap:10px;align-items:center"><span style="color:${n[3]}">${svg(I.ia,20,2)}</span><b style="font-size:15px">${n[1]}</b></div><span style="font-size:14px;color:#3a465e">${n[2]}</span>
+ ${S.done[n[0]]?`<span class="bd" style="background:#e3f5e9;color:#1a6b3c;align-self:flex-start">Ação aplicada</span>`:`<button class="btn sm" style="align-self:flex-start" data-do="${n[0]}" data-msg="Feito: ${n[4]}">${n[4]}</button>`}</div>`).join('')}</div>
+ <section class="card pad"><h2 style="margin-bottom:6px">Automações</h2>${AUTO.map(a=>`<div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid #eef1f6"><span class="grow">${two(a[1],a[2])}</span><button class="sw ${S.auto[a[0]]?'on':''}" role="switch" aria-checked="${!!S.auto[a[0]]}" aria-label="${a[1]}" data-tog="${a[0]}"></button></div>`).join('')}</section></div>`;
+}
+
 function other(){
  const n=NAV.find(x=>x[0]===S.screen)||NAV[0];
  return `<div class="stack"><h1>${n[1]}</h1><div class="card" style="border-style:dashed;border-color:#c9d1e0;padding:56px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center">
@@ -276,7 +450,7 @@ function modal(){
 const app=document.getElementById('app');
 function render(){
  const ae=document.activeElement,fid=ae&&ae.id,sel=ae&&ae.selectionStart;
- const scr={dashboard:dash,obras:obras,obra:obra,planejamento:plan,financeiro:fin,compras:compras}[S.screen]||other;
+ const scr={dashboard:dash,obras:obras,obra:obra,planejamento:plan,financeiro:fin,compras:compras,projetos:projetos,orcamento:orcamento,estoque:estoque,equipamentos:equipamentos,rh:rh,seguranca:seguranca,documentos:documentos,contratos:contratos,clientes:clientes,fornecedores:fornecedores,marketplace:marketplace,relatorios:relatorios,ia:ia}[S.screen]||other;
  const mainEl=app.querySelector('main'),st=mainEl?mainEl.scrollTop:0;
  app.innerHTML=side()+`<div class="col-main">${head()}<main id="main">${scr()}</main></div>`+modal()+(S.toast?`<div class="toast" role="status">${svg('M5 12l5 5L20 7',18,2.4,'#7ee2a8')}${esc(S.toast)}</div>`:'');
  if(fid==='q'){const q=document.getElementById('q');q.focus();try{q.setSelectionRange(sel,sel)}catch(e){}}
@@ -286,13 +460,17 @@ function render(){
 function go(s){S.modal=false;S.screen=s;if(window.innerWidth<820)S.collapsed=true;render();app.querySelector('main').scrollTop=0;history.replaceState(null,'','#'+s)}
 
 app.addEventListener('click',e=>{
- const t=e.target.closest('[data-go],[data-obra],[data-act],[data-filter],[data-tab],[data-pagar],[data-aprovar]');if(!t)return;
+ const t=e.target.closest('[data-go],[data-obra],[data-act],[data-filter],[data-tab],[data-pagar],[data-aprovar],[data-do],[data-sub],[data-tog],[data-cart]');if(!t)return;
  const d=t.dataset;
  if(d.go)return go(d.go);
  if(d.obra){S.obraId=d.obra;S.tab='resumo';return go('obra')}
  if(d.filter)return set({filter:d.filter});
  if(d.tab)return set({tab:d.tab});
  if(d.pagar){const c=CONTAS.find(x=>x[0]===d.pagar);S.pagas[d.pagar]=true;S._keepScroll=true;return flash('Pagamento agendado: '+c[1])}
+ if(d.do){S.done[d.do]=true;if(d.do==='i4')DOCS.forEach(x=>{if(x[5]==='Vencendo')S.done[x[0]]=true});S._keepScroll=true;return flash(d.msg)}
+ if(d.sub){const i=d.sub.indexOf('|');S.sub[d.sub.slice(0,i)]=d.sub.slice(i+1);S._keepScroll=true;return render()}
+ if(d.tog){S.auto[d.tog]=!S.auto[d.tog];S._keepScroll=true;return flash('Automação '+(S.auto[d.tog]?'ativada':'desativada'))}
+ if(d.cart){if(d.cart==='enviar'){const n=Object.keys(S.cart).length;S.cart={};S._keepScroll=true;return flash('Cotação de '+n+' ite'+(n>1?'ns':'m')+' enviada aos fornecedores')}if(S.cart[d.cart])delete S.cart[d.cart];else S.cart[d.cart]=true;S._keepScroll=true;return render()}
  if(d.aprovar){S.aprovados[d.aprovar]=true;S._keepScroll=true;return flash('Pedido '+d.aprovar+' aprovado')}
  if(d.act==='toggle')return set({collapsed:!S.collapsed});
  if(d.act==='modal'){set({modal:true});setTimeout(()=>{const n=document.getElementById('fNome');n&&n.focus()},0);return}
